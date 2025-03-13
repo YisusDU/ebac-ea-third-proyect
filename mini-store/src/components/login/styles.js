@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-import loginImg from '../../assets/img/portadeLogin.jpg'
 
 const LoginContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   background-color:rgb(231, 231, 231);
   color: white;
-  box-sizing: border-box;`;
+  box-sizing: border-box;
+`;
 
 const LogTitle = styled.article`
   top: 10%;
@@ -21,6 +21,7 @@ const LogTitle = styled.article`
   align-items: center;
   text-align: center;
   width: 50%;
+  min-width: 250px;
   height: auto;
   border-radius: 10px;
   padding: 20px;
@@ -39,14 +40,28 @@ const LogTitle = styled.article`
     color: #d33636;
   }
 span{
-    color: #000;
+    color: #fff;
     font-weight: bold;
     font-style: italic;
+    background-color: #51bbbba8;
+    border-radius: 10px;
+    padding: 0 5px;
 }
     
+    @media (max-width: 768px) {
+        max-width: 250px;
+        padding: 10px;
+        position: absolute;
+        top: -285px;
+        span{
+            color: #fff;
+        }
+    }
 `;
 const LogOptions = styled.article`
     display: flex;
+    min-height: 600px; // Set a minimum height
+    height: fit-content;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -57,6 +72,13 @@ const LogOptions = styled.article`
     padding: 0px;
     background-color:rgb(255, 255, 255);
     color: #000;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: auto;
+    }
+    @media (prefers-color-scheme: dark) {
+        background-color: #1a1a1a;
+    }
 `;
 
 const LoginSignUp = styled.div`
@@ -66,14 +88,30 @@ const LoginSignUp = styled.div`
     align-items: center;
     width: 70%;
     height: 100%;
-    border-right: 1px solid #000;
-    padding: 20px;
-    background-image: url(${loginImg});
     box-sizing: border-box;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color:#000;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        min-height: 914px;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 300px;
+        border-right: none;
+        border-bottom: 1px solid #000;
+        
+        img {
+            width: 100%;
+            border-radius: 10px 0px 0px 10px;
+        }
+    }
 `;
 
 const LoginSignIn = styled.div`
@@ -88,6 +126,15 @@ const LoginSignIn = styled.div`
     padding: 20px;
     box-sizing: border-box;
     background-color: #efefef;
+
+    @media (max-width: 768px) {
+        position: relative;
+        width: 100%;
+        height: fit-content;
+        border-right: none;
+        border-bottom: 1px solid #000;
+    }
+
     
     p {
         margin: 20px 0;
@@ -138,8 +185,45 @@ const LoginSignIn = styled.div`
         &:hover {
             background-color: transparent;
             color: #28a745;
-        }
+        }  
     } 
+    .guest{
+        width: 80%;
+        margin-top: 10px;
+        background-color:rgb(167, 51, 40);
+        border: 2px solid rgb(167, 51, 40);
+        padding: 12px 24px;
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background-color: transparent;
+            color:rgb(167, 51, 40);
+        } 
+    }
+    @media (hover: hover) {
+        button {
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+        }
+        
+        .guest:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(167, 51, 40, 0.3);
+        }
+    }
+    @media (prefers-color-scheme: dark) {
+      background-color:#919191;
+      color: #fff;
+      p{
+        color: #fff;
+      }
+    }
 `;
 
 const LoginFieldset = styled.fieldset`
@@ -208,12 +292,6 @@ const LoginFieldset = styled.fieldset`
         }
 }
 `;
-   
-
-
-
-
-
 export {
     LoginContainer,
     LogTitle,

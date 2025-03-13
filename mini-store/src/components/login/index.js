@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../../assets/img/logoEcomm.jpg"
+import loginImg from '../../assets/img/portadeLogin.jpg'
+
 import {
   LoginContainer,
   LogTitle,
@@ -10,16 +12,18 @@ import {
 } from "./styles";
 
 const Login = () => {
+
+
   return (
     <>
       <LoginContainer>
-
         <LogOptions>
           <LoginSignUp>
+            <img src={loginImg} />
           </LoginSignUp>
           <LoginSignIn>
             <LogTitle>
-              <img src={logo}/>
+              <img src={logo} />
               <h1>Welcome to <span>Mini Store</span></h1>
             </LogTitle>
             <LoginFieldset>
@@ -43,8 +47,10 @@ const Login = () => {
               <button>Login</button>
             </LoginFieldset>
             <p>Or......</p>
-            <h2>Don't you have an acount?</h2>
+            <h2>Don't you have an account?</h2>
             <button>Go to register!</button>
+            <p>Or......</p>
+            <button className="guest" >Continue as guest</button>
           </LoginSignIn>
         </LogOptions>
       </LoginContainer>
