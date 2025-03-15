@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginContainer = styled.section`
+const LoginContainer = styled.article`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,12 +8,12 @@ const LoginContainer = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color:rgb(231, 231, 231);
+  background-color: #efefef;  
   color: white;
   box-sizing: border-box;
 `;
 
-const LogTitle = styled.article`
+const LogTitle = styled.section`
   top: 10%;
   display: flex;
   flex-direction: column;
@@ -21,12 +21,13 @@ const LogTitle = styled.article`
   align-items: center;
   text-align: center;
   width: 50%;
-  min-width: 250px;
+  min-width: 225px;
   height: auto;
   border-radius: 10px;
   padding: 20px;
   color: #000;
   box-sizing: border-box;
+
   img{
     width: 100%;
     border-radius: 10px;
@@ -58,9 +59,9 @@ span{
         }
     }
 `;
-const LogOptions = styled.article`
+const LogOptions = styled.section`
     display: flex;
-    min-height: 600px; // Set a minimum height
+    min-height: 600px;
     height: fit-content;
     flex-direction: row;
     justify-content: space-between;
@@ -70,7 +71,7 @@ const LogOptions = styled.article`
     border-radius: 10px;
     box-sizing: border-box;
     padding: 0px;
-    background-color:rgb(255, 255, 255);
+    background-color: #efefef;
     color: #000;
     @media (max-width: 768px) {
         flex-direction: column;
@@ -149,7 +150,7 @@ const LoginSignIn = styled.div`
             content: '';
             position: absolute;
             top: 50%;
-            width: 45%;
+            width: 35%;
             height: 1px;
             background-color: #ccc;
         }
@@ -163,7 +164,7 @@ const LoginSignIn = styled.div`
         }
     }
 
-    h2:nth-of-type(2) {
+    .notAcount {
         margin: 15px 0;
         color: #333;
         font-size: 1.3em;

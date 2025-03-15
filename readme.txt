@@ -23,3 +23,7 @@ Pronto nos damos cuenta de que necesitamos una carpeta de themes para manejar es
         EL ThemeProvider deber envolver los componentes dentro de app
         debe incluir un "componente llamado GlobalStyles
 Dado que GlobalStyles está importando style-reset, procedemos a instalarlo
+
+Luego de terminar los estilos responsivos, procedemos a crear el JSX del siguiente componente, para lo que comentamos el componente Login
+
+Procedemos a crear el registro de usuarios

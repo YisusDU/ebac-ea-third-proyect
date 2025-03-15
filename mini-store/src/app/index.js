@@ -7,14 +7,15 @@ import { ThemeProvider } from "styled-components";
 import Theme from "../theme";
 import GlobalStyles from "../theme/GlobalStyles";
 import Login from "../components/login";
+import Registry from "../components/registry";
 
 function App() {
   return (
     <>
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
-        <Login />
-
+        {/* <Login /> */}
+        <Registry />
         <Routes>
           <Route path="" element={<></>} />
           <Route path="" element={<></>} />

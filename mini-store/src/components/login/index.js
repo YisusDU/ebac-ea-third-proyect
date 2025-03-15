@@ -19,11 +19,11 @@ const Login = () => {
       <LoginContainer>
         <LogOptions>
           <LoginSignUp>
-            <img src={loginImg} />
+            <img src={loginImg} alt="login-portade"/>
           </LoginSignUp>
           <LoginSignIn>
             <LogTitle>
-              <img src={logo} />
+              <img src={logo} alt="logo-store"/>
               <h1>Welcome to <span>Mini Store</span></h1>
             </LogTitle>
             <LoginFieldset>
@@ -47,7 +47,7 @@ const Login = () => {
               <button>Login</button>
             </LoginFieldset>
             <p>Or......</p>
-            <h2>Don't you have an account?</h2>
+            <h2 className="notAcount">Don't you have an account?</h2>
             <button>Go to register!</button>
             <p>Or......</p>
             <button className="guest" >Continue as guest</button>
