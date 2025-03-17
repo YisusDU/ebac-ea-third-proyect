@@ -12,7 +12,6 @@ const Registry = () => {
     return (
         <>
             <RegistryContainer>
-
                 <RegistryForm>
                     <RegistryLogo>
                         <img src={logo} alt="logo-ecommerce" />

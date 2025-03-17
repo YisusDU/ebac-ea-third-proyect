@@ -1,12 +1,12 @@
 import React from "react";
 import logo from "../../assets/img/logoEcomm.jpg"
-import loginImg from '../../assets/img/portadeLogin.jpg'
+import loginPortade from '../../assets/img/portadeLogin.jpg'
 
 import {
   LoginContainer,
   LogTitle,
   LogOptions,
-  LoginSignUp,
+  LoginImg,
   LoginSignIn,
   LoginFieldset
 } from "./styles";
@@ -18,9 +18,9 @@ const Login = () => {
     <>
       <LoginContainer>
         <LogOptions>
-          <LoginSignUp>
-            <img src={loginImg} alt="login-portade"/>
-          </LoginSignUp>
+          <LoginImg>
+            <img src={loginPortade} alt="login-portade"/>
+          </LoginImg>
           <LoginSignIn>
             <LogTitle>
               <img src={logo} alt="logo-store"/>

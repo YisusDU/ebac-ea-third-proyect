@@ -1,4 +1,44 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+// Mixins
+const flexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const flexColumn = css`
+  ${flexCenter}
+  flex-direction: column;
+`;
+
+const buttonBase = css`
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 80%;
+  margin-top: 10px;
+`;
+
+const buttonHover = css`
+  @media (hover: hover) {
+    &:hover {
+      background-color: transparent;
+      transform: translateY(-2px);
+    }
+  }
+`;
+
+const darkModeText = css`
+  @media (prefers-color-scheme: dark) {
+    color: #fff;
+    button:hover,.guest:hover {
+      color: #fff;
+    }
+  }
+`;
 
 const LoginContainer = styled.article`
   display: flex;
@@ -78,11 +118,14 @@ const LogOptions = styled.section`
         height: auto;
     }
     @media (prefers-color-scheme: dark) {
-        background-color: #1a1a1a;
+      background-color: #919191;
+    }
+    @media (prefers-color-scheme: dark) {
+
     }
 `;
 
-const LoginSignUp = styled.div`
+const LoginImg = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,16 +161,40 @@ const LoginSignUp = styled.div`
 const LoginSignIn = styled.div`
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    ${flexColumn}
     width: 30%;
     height: 100%;
     padding: 20px;
     box-sizing: border-box;
     background-color: #efefef;
 
+    button {  
+        ${buttonBase}
+        background-color: #28a745;
+        border: 2px solid #28a745;
+        color: white;
+
+        ${buttonHover}
+        &:hover {
+          color: #28a745;
+          box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+    } 
+
+    .guest {
+        ${buttonBase}
+        background-color: rgb(167, 51, 40);
+        border: 2px solid rgb(167, 51, 40);
+        color: #fff;
+
+        ${buttonHover}
+        &:hover {
+          color: rgb(167, 51, 40);
+          box-shadow: 0 5px 15px rgba(167, 51, 40, 0.3);
+        }
+    }
+
+    ${darkModeText}
     @media (max-width: 768px) {
         position: relative;
         width: 100%;
@@ -182,64 +249,61 @@ const LoginSignIn = styled.div`
         font-size: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
-        
-        &:hover {
-            background-color: transparent;
-            color: #28a745;
-        }  
     } 
-    .guest{
+
+    .guest {
         width: 80%;
         margin-top: 10px;
-        background-color:rgb(167, 51, 40);
+        background-color: rgb(167, 51, 40);
         border: 2px solid rgb(167, 51, 40);
         padding: 12px 24px;
-        color: white;
+        color: #fff;
         border-radius: 5px;
         font-size: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
-        
-        &:hover {
-            background-color: transparent;
-            color:rgb(167, 51, 40);
-        } 
     }
+
     @media (hover: hover) {
-        button {
-            &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            }
+        button:hover {
+            background-color: transparent;
+            color: #28a745;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
         }
         
         .guest:hover {
+            background-color: transparent;
+            color: rgb(167, 51, 40);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(167, 51, 40, 0.3);
         }
     }
+
     @media (prefers-color-scheme: dark) {
-      background-color:#919191;
-      color: #fff;
-      p{
+        background-color: #919191;
         color: #fff;
-      }
+        p {
+            color: #fff;
+        }
+        @media (hover: hover) {
+            button:hover, .guest:hover {
+                color: #fff;
+            }
+        }
     }
 `;
 
 const LoginFieldset = styled.fieldset`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 40%;
-        border-radius: 10px;
-        box-sizing: border-box;
-        padding: 20px;
-        position: relative;
-        z-index: 2;
-        box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
+    ${flexColumn}
+    width: 100%;
+    height: 40%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
     h2{
         width: 100%;
         font-weight: bold;
@@ -276,28 +340,39 @@ const LoginFieldset = styled.fieldset`
         }
     }
         button {
-        padding: 12px 24px;
+        ${buttonBase}
         background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
         border: 2px solid #007bff;
-        transition: background-color 0.3s ease;
+        color: white;
+        width: 100%;
 
+        ${buttonHover}
         &:hover {
-            color: #007bff;
-            background-color: transparent;
-            border: 2px solid #007bff;
+          color: #007bff;
+          box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
         }
-}
+    }
+
+    ${darkModeText}
+    @media (hover: hover) {
+        button:hover {
+            color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        @media (hover: hover) {
+            button:hover {
+                color: #fff;
+            }
+        }
+    }
 `;
 export {
     LoginContainer,
     LogTitle,
     LogOptions,
-    LoginSignUp,
+    LoginImg,
     LoginSignIn,
     LoginFieldset
 };
