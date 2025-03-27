@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderContainer, HeaderTitle, HeaderCart } from './styles';
-import { toggleCart } from '../../state/products.slice';
+import { toggleCart } from '../../../state/products.slice';
 import SVGComponent from './svgHeader';
 
 const ProductHeader = () => {

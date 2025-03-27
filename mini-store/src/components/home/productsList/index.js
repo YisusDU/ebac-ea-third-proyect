@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreContainer, ProductsArray, Product, LoadingOrError } from './styles.js';
-import { fetchProducts, addProduct } from '../../state/products.slice';
-import { FAILED, IDLE, LOADING, SUCCEEDED } from '../../state/status';
+import { fetchProducts, addProduct } from '../../../state/products.slice.js';
+import { FAILED, IDLE, LOADING, SUCCEEDED } from '../../../state/status.js';
 
 const ProductsList = () => {
     const dispatch = useDispatch();

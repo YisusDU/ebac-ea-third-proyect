@@ -1,13 +1,12 @@
 import React from "react";
-import ProductHeader from "../components/header/index";
-import ProductsList from "../components/productsList/index"
-import Cart from "../components/cart/index"
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Theme from "../theme";
 import GlobalStyles from "../theme/GlobalStyles";
 import Login from "../components/login";
 import Registry from "../components/registry";
+import Home from "../components/home";
+import Checkout from "../components/checkout";
 
 function App() {
   return (
@@ -15,14 +14,13 @@ function App() {
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
         {/* <Login /> */}
-        <Registry />
+        {/* <Registry /> */}
+        {/* <Home /> */}
+        <Checkout />
         <Routes>
           <Route path="" element={<></>} />
           <Route path="" element={<></>} />
         </Routes>
-        {/* <ProductHeader />
-      <ProductsList />
-      <Cart /> */}
       </ThemeProvider>
     </>
   );
