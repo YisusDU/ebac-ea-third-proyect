@@ -116,6 +116,14 @@ const CheckoutFormContainer = styled.article`
     padding: 20px;
     box-sizing: border-box;
   }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: ${Theme.colors.darkModeBackground};
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    label,fieldset legend {
+      color: ${Theme.fonts.color.secondary};
+    }
+  }
 `;
 
 export { CheckoutFormContainer }

@@ -6,6 +6,7 @@ const CheckoutForm = () => {
         <CheckoutFormContainer>
             <form>
                 <fieldset>
+                    <i>"Simulation Mode"</i>
                     <legend>Shipping Address</legend>
                     <label htmlFor="street">Street Address</label>
                     <input

@@ -19,6 +19,13 @@ const ItemsContainer = styled.article`
     margin: 0 0 20px 0;
     box-sizing: border-box;
   }
+  @media (prefers-color-scheme: dark){
+    background-color: ${Theme.colors.darkModeBackground};
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    h2 {
+      color: ${Theme.fonts.color.secondary}
+    }
+  }
 `;
 
 const ProductList = styled.div`

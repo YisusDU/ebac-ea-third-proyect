@@ -3,7 +3,8 @@ const Theme = {
     primary: "#007bff",
     secondary: "#0066FF",// electricblue
     tertiary: "#FF0000",// electric red
-    background: "#efefef",
+    background: "#efefef",// light gray
+    darkModeBackground: "#919191",// dark gray
   },
   fonts: {
     base: "Arial, helvetica, sans-serif",

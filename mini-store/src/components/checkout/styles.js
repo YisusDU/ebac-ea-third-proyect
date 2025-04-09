@@ -28,6 +28,10 @@ const CheckoutContainer = styled.section`
     flex-direction: column;
     align-items: center;
   }
+  
+  @media (prefers-color-scheme: dark){
+    background: linear-gradient( #007bff 0%, #cfcfcf 30%);
+  }
 `;
 
-export { CheckoutContainer };
+export { CheckoutContainer }; 

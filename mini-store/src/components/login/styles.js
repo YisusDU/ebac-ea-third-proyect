@@ -120,9 +120,6 @@ const LogOptions = styled.section`
     @media (prefers-color-scheme: dark) {
       background-color: #919191;
     }
-    @media (prefers-color-scheme: dark) {
-
-    }
 `;
 
 const LoginImg = styled.div`
