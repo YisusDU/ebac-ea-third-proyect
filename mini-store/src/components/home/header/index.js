@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderContainer, HeaderTitle, HeaderCart } from './styles';
 import { toggleCart } from '../../../state/products.slice';
-import SVGComponent from './svgHeader';
+import SVGComponent from './SvgHeader';
 
 const ProductHeader = () => {
     const products = useSelector((state) => state.cart.products);

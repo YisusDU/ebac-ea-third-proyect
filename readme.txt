@@ -35,5 +35,8 @@ Revisé que en la pagina de EBAC nos piden un Home que tenga la vista de los pro
 por la union de varios componentes por separado, he decido crearlo e importar el header, el carrito y el productList
 
 Enseguida crearé el componente Checkout e iré puliendo los estilos
+En el componente Checkout utilizamos en mayor medida el Theme provider para utilizar un estilos más estandar, y añadimos estilos para el background en dark mode
+
+Es hora de crear el componente Post-checkout, que contendrá un mensaje de confirmación de la compra con detalles
 
 Posteriormente iré al Cart a modificar los estilos responsivos y añadir un boton para ir a checkout.

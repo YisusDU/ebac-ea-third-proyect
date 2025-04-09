@@ -1,5 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Theme from "../../../theme";
+
+const titleStyle = css`
+  color: ${Theme.colors.primary};
+  margin-bottom: 20px;
+  font-size: 1.5em;
+`;
 
 const ItemsContainer = styled.article`
   width: 100%;
@@ -7,11 +13,15 @@ const ItemsContainer = styled.article`
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 
   h2 {
-    color: ${Theme.colors.primary};
-    margin-bottom: 20px;
-    font-size: 1.5em;
+    text-align: center;
+    ${titleStyle}
+  }
+  h3 {
+    text-align: justify;
+    ${titleStyle}
   }
 
   @media (max-width: 768px) {
@@ -20,9 +30,9 @@ const ItemsContainer = styled.article`
     box-sizing: border-box;
   }
   @media (prefers-color-scheme: dark){
-    background-color: ${Theme.colors.darkModeBackground};
+    background-color: ${Theme.colors.darkModeBackgroundITem};
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    h2 {
+    h2,h3 {
       color: ${Theme.fonts.color.secondary}
     }
   }

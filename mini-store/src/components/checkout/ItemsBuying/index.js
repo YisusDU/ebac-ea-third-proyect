@@ -1,14 +1,14 @@
 import React from "react";
 import { ItemsContainer, ProductList, ProductItem } from "./styles";
 
-const ItemsBuying = () => {
+const ItemsBuying = ({message}) => {
     return (
         <ItemsContainer>
             <div>
-                <h2>Please, check your items before buying</h2>
+                <h2>{message}</h2>
             </div>
             <div>
-                <h2>Your items:</h2>
+                <h3>Your items:</h3>
                 <ProductList>
                     <ProductItem>product</ProductItem>
                     <ProductItem>product</ProductItem>

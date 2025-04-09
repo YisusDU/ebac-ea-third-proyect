@@ -118,7 +118,7 @@ const CheckoutFormContainer = styled.article`
   }
 
   @media (prefers-color-scheme: dark) {
-    background-color: ${Theme.colors.darkModeBackground};
+    background-color: ${Theme.colors.darkModeBackgroundITem};
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     label,fieldset legend {
       color: ${Theme.fonts.color.secondary};
