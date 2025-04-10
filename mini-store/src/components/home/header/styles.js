@@ -5,15 +5,72 @@ const HeaderContainer = styled.header`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 0 20px;
   background-color: #282c34;
   color: white;
   box-sizing: border-box;
 `;
 
-const HeaderTitle = styled.h1`
-  font-size: 24px;
-  margin: 0;
+const HeaderLogo = styled.picture`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 20%;
+  min-width: 225px;
+  height: 5%;
+  border-radius: 10px;
+  padding: 20px;
+  color: #000;
+  box-sizing: border-box;
+  gap: 10px;
+
+  img{
+    width: 40%;
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
+    }
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #d33636;
+  }
+span{
+    color: #fff;
+    font-weight: bold;
+    font-style: italic;
+    background-color: #51bbbba8;
+    border-radius: 10px;
+    padding: 0 5px;
+    text-wrap: nowrap;
+}
+`;
+
+const HeaderSearch = styled.h1`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 40%;
+  min-width: 225px;
+  height: 10%;
+  border-radius: 10px;
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+  button {
+    text-wrap: nowrap;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+
 `;
 
 const HeaderCart = styled.div`
@@ -21,10 +78,15 @@ const HeaderCart = styled.div`
     align-items: center;
     cursor: pointer;
     position: relative;
+    width: 2%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
 
     svg {
-        width: 24px;
-        height: 24px;
+        width: 100%;
+        height: auto;
     }
 
     span {
@@ -35,8 +97,12 @@ const HeaderCart = styled.div`
         color: white;
         border-radius: 50%;
         padding: 2px 6px;
-        font-size: 12px;
+        font-size: 17px;
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
     }
 `;
 
-export { HeaderContainer, HeaderTitle, HeaderCart };
+export { HeaderLogo, HeaderContainer, HeaderSearch, HeaderCart };

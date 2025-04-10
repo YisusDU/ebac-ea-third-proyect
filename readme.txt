@@ -39,4 +39,6 @@ En el componente Checkout utilizamos en mayor medida el Theme provider para util
 
 Es hora de crear el componente Post-checkout, que contendrá un mensaje de confirmación de la compra con detalles
 
-Posteriormente iré al Cart a modificar los estilos responsivos y añadir un boton para ir a checkout.
+Ahora con los componentes diseñados, es momento de modificar el header component, abremos de añadir el logotipo del sitio, actualizar el título y
+añadir una barra de búsqueda
+    

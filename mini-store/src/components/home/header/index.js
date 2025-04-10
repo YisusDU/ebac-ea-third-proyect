@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { HeaderContainer, HeaderTitle, HeaderCart } from './styles';
+import { HeaderLogo, HeaderContainer, HeaderSearch, HeaderCart } from './styles';
 import { toggleCart } from '../../../state/products.slice';
 import SVGComponent from './SvgHeader';
+import logo from '../../../assets/img/logoEcomm.jpg';
 
 const ProductHeader = () => {
     const products = useSelector((state) => state.cart.products);
@@ -15,7 +16,14 @@ const ProductHeader = () => {
 
     return (
         <HeaderContainer >
-            <HeaderTitle>Mini-Store -- v 3.0</HeaderTitle>
+            <HeaderLogo>
+                <img src={logo} alt="logo-store" />
+                <h1><span>Mini Store</span> v3.0</h1>
+            </HeaderLogo>
+            <HeaderSearch>
+                <input type="text" placeholder="Type some item name..." />
+                <button>Search 🔍</button>
+            </HeaderSearch>
             <HeaderCart onClick={handleCloseClick}>
                 <SVGComponent />
                 <span role="button" aria-label='cart-Count'>{cartItemsCount}</span>
