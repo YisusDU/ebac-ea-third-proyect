@@ -41,4 +41,15 @@ Es hora de crear el componente Post-checkout, que contendrá un mensaje de confi
 
 Ahora con los componentes diseñados, es momento de modificar el header component, abremos de añadir el logotipo del sitio, actualizar el título y
 añadir una barra de búsqueda
-    
+    Añadir la logica del filtrado de elementos por medio de la barra de búsqueda es más complejo de lo que parece
+    Empezamos modificando el slice para recibir el searchTerm en el estado, y añadimos un reducer para lo mismo
+    Ahora añadimos una función en el header para despachar el termino de busqueda en el header
+    Entonces modificamos el ProductsList para usar useMemo en el filtrado de los items
+
+Ahora se me ocurre que podemos reutilizar las estructura del carrito para manejar el checkout y el post checkout
+    Con el checkout:
+    Al verificar la lógica del carrito, noté que no estaba mostrando los títulos de los productos, por lo que decidí arreglarlo
+        para ello, solo verifiqué como se estaba nombrando en el componente ProductsList, que es donde se mandan al estado
+        y corregí la llamada a la propiedad, que resultó ser title y no name
+        tambien añadí algunos detalles estéticos para los títulos demasiado largos
+    Además, quiero añadir un botón para llevar al checkout, dicho botón solo se muestra si hay items en el carrito, si no, el botón add some items cierra el carrito

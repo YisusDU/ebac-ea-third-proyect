@@ -40,6 +40,7 @@ const Cart = () => {
                     ))}
                 </ul>
             )}
+            {items.length > 0 ? (<button>Buy</button>):(<button>Add some items, please!</button>) }
         </CartContainer>
     );
 };
