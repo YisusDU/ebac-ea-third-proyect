@@ -1,6 +1,10 @@
 import React from "react";
 import { CheckoutFormContainer } from "./styles";
 
+const buttonCLicked = (e) => {
+    e.preventDefault();
+}
+
 const CheckoutForm = () => {
     return (
         <CheckoutFormContainer>
@@ -104,7 +108,7 @@ const CheckoutForm = () => {
                         tabIndex={9}
                     />
                 </fieldset>
-                <button>Buy</button>
+                <button onClick={buttonCLicked}>Buy</button>
             </form>
         </CheckoutFormContainer>
     );

@@ -10,7 +10,7 @@ const CartContainer = styled.aside`
     min-width: 350px;
     position: fixed;
     top: 60px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 23px 18px 56px rgb(81 81 81);
     transition: right 0.3s ease-in-out;
     right: ${({ isOpen }) => isOpen ? '20px' : '-100%'};
 
@@ -18,6 +18,41 @@ const CartContainer = styled.aside`
         font-size: 1.5rem;
         margin-bottom: 10px;
 
+    }
+
+    hr{
+        margin: 10px 0;
+    }
+
+    p{
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    @media (prefers-color-scheme: dark){
+        color: #fff;
+        background-color: #919191;
+
+        p{
+            color: #000;
+        }
+    }
+`;
+
+const BuyButton = styled.button`
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: scale 0.3s ease-in-out; 
+
+
+    &:hover{
+        background-color: #0056b3;
+        scale: 1.05;
+        transition: scale 0.s ease-in-out; 
     }
 `;
 
@@ -94,5 +129,6 @@ export {
     CartItem,
     RemoveButton,
     CartContainer,
-    CloseButton
+    CloseButton,
+    BuyButton
 }

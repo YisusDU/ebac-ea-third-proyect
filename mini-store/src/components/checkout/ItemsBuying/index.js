@@ -1,30 +1,47 @@
 import React from "react";
 import { useSelector } from 'react-redux';
-import { ItemsContainer, ProductList, ProductItem } from "./styles";
+import { ItemsContainer, ProductList, ProductItem, ItemsList, ItemsTotal, ItemsHeader } from "./styles";
 
 const ItemsBuying = ({ message }) => {
     const items = useSelector(state => state.cart.products);
 
     return (
         <ItemsContainer>
-            <div>
+            <ItemsHeader>
+                <button>
+                    ⬅️Back
+                </button>
                 <h2>{message}</h2>
-            </div>
+            </ItemsHeader>
             <div>
                 <h3>Your items:</h3>
                 <ProductList>
-                    <ul>
+                    <ItemsList>
                         {items.map(item => (
                             <ProductItem key={item.id} role='listitem'>
-                                <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px' }} />
-                                <figcaption>
-                                    {item.title}  ${item.price} &times; {item.quantity}
-                                </figcaption>
+                                <figure>
+                                    <img src={item.image} alt={item.name} />
+                                    <figcaption>
+                                        <p>
+                                            {item.title}
+                                        </p>
+                                        <span>
+                                            ${item.price} &times; {item.quantity}
+                                        </span>
+                                    </figcaption>
+                                </figure>
+                                <p> ${item.price * item.quantity}</p>
                             </ProductItem>
                         ))}
-                    </ul>
+                    </ItemsList>
                 </ProductList>
             </div>
+            <ItemsTotal>
+                <hr />
+                <h3>
+                    Total: ${items.reduce((total, item) => total + item.price * item.quantity, 0)}
+                </h3>
+            </ItemsTotal>
         </ItemsContainer>
     )
 };

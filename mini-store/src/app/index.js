@@ -16,8 +16,8 @@ function App() {
         <GlobalStyles />
         {/* <Login /> */}
         {/* <Registry /> */}
-        <Home />
-        {/* <Checkout /> */}
+        {/* <Home /> */}
+        <Checkout />
         {/* <PostCheckout /> */}
         <Routes>
           <Route path="" element={<></>} />

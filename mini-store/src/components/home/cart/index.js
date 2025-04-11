@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCart, removeProduct } from '../../../state/products.slice';
-import { CartContainer, CartItem, RemoveButton, CloseButton } from './styles';
+import { CartContainer, CartItem, RemoveButton, CloseButton, BuyButton } from './styles';
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -20,8 +20,9 @@ const Cart = () => {
         <CartContainer isOpen={isOpen}>
             <CloseButton role='check-box' onClick={handleCloseClick} aria-label='close-Cart'>X</CloseButton>
             <h2>Your Cart</h2>
+            <hr />
             {items.length === 0 ? (
-                <p>No items in the cart.</p>
+                <p>No items in the cart!.</p>
             ) : (
                 <ul>
                     {items.map(item => (
@@ -35,12 +36,16 @@ const Cart = () => {
                                     ${item.price} &times; {item.quantity}
                                 </p>
                             </figcaption>
-                            <RemoveButton onClick={() => handleRemove(item.id)} aria-label='remove-Item' role='button'>Remove</RemoveButton>
+                            <RemoveButton
+                                onClick={() => handleRemove(item.id)}
+                                aria-label='remove-Item'
+                                role='button'>Remove
+                            </RemoveButton>
                         </CartItem>
                     ))}
                 </ul>
             )}
-            {items.length > 0 ? (<button>Buy</button>):(<button>Add some items, please!</button>) }
+            {items.length > 0 ? (<BuyButton>Buy</BuyButton>) : (<BuyButton onClick={handleCloseClick}>⬅️Add some items, please!</BuyButton>)}
         </CartContainer>
     );
 };

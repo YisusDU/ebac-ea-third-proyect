@@ -27,11 +27,12 @@ const buttonBase = css`
 const CheckoutFormContainer = styled.article`
   ${flexColumn}
   width: 100%;
+  min-width: 320px;
   padding: 20px;
   gap: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
   box-sizing: border-box;
 
   form{
@@ -84,7 +85,7 @@ const CheckoutFormContainer = styled.article`
     font-size: 16px;
     transition: all 0.3s ease;
     box-sizing: border-box;
-
+    background-color: #f9f9f9;
 
     &:focus {
       outline: none;
@@ -102,24 +103,28 @@ const CheckoutFormContainer = styled.article`
     ${buttonBase}
     background-color: ${Theme.colors.secondary};
     border: 2px solid ${Theme.colors.secondary};
-
-    &:hover {
-      background-color: transparent;
-      color: ${Theme.colors.primary};
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+  
+    @media (hover: hover) {
+      &:hover {
+        background-color: transparent;
+        color: ${Theme.colors.primary};
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+      }
+    
     }
   }
 
   @media (max-width: 768px) {
     width: 90%;
+    min-width: 320px;
     padding: 20px;
     box-sizing: border-box;
   }
 
   @media (prefers-color-scheme: dark) {
     background-color: ${Theme.colors.darkModeBackgroundITem};
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
     label,fieldset legend {
       color: ${Theme.fonts.color.secondary};
     }

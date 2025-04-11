@@ -53,3 +53,5 @@ Ahora se me ocurre que podemos reutilizar las estructura del carrito para maneja
         y corregí la llamada a la propiedad, que resultó ser title y no name
         tambien añadí algunos detalles estéticos para los títulos demasiado largos
     Además, quiero añadir un botón para llevar al checkout, dicho botón solo se muestra si hay items en el carrito, si no, el botón add some items cierra el carrito
+
+Con los items añadidos al Checkout, deberíamos poder ver el total a pagar
