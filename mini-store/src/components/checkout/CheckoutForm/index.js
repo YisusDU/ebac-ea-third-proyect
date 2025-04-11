@@ -1,5 +1,6 @@
 import React from "react";
-import { CheckoutFormContainer } from "./styles";
+import { CheckoutFormContainer, CheckoutPortade } from "./styles";
+import Portade from "../../../assets/img/ChckoutPortade.jpg"
 
 const buttonCLicked = (e) => {
     e.preventDefault();
@@ -110,6 +111,9 @@ const CheckoutForm = () => {
                 </fieldset>
                 <button onClick={buttonCLicked}>Buy</button>
             </form>
+            <CheckoutPortade>
+                {/* <img src={Portade}/> */}
+            </CheckoutPortade>
         </CheckoutFormContainer>
     );
 }

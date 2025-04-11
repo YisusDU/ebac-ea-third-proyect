@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import Theme from "../../../theme";
+import Portade from "../../../assets/img/ChckoutPortade.jpg"
 
 // Reutilizamos los mixins
 const flexCenter = css`
@@ -25,19 +26,22 @@ const buttonBase = css`
 `;
 
 const CheckoutFormContainer = styled.article`
-  ${flexColumn}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   min-width: 320px;
-  padding: 20px;
   gap: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
   box-sizing: border-box;
+  overflow: hidden;
 
   form{
     ${flexColumn}
-    width: 100%;
+    width: 60%;
+    padding: 20px;
     gap: 20px;
     box-sizing: border-box;
   }
@@ -118,7 +122,6 @@ const CheckoutFormContainer = styled.article`
   @media (max-width: 768px) {
     width: 90%;
     min-width: 320px;
-    padding: 20px;
     box-sizing: border-box;
   }
 
@@ -131,4 +134,17 @@ const CheckoutFormContainer = styled.article`
   }
 `;
 
-export { CheckoutFormContainer }
+const CheckoutPortade = styled.div`
+  width: 40%;
+  background-image: url(${Portade});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: 20% center;
+  img{
+    width: 100%;
+    height: 100vh;
+  }
+`;
+
+export { CheckoutFormContainer, CheckoutPortade }
