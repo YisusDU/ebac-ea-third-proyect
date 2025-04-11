@@ -26,8 +26,15 @@ const Cart = () => {
                 <ul>
                     {items.map(item => (
                         <CartItem key={item.id} role='listitem'>
-                            <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px' }} />
-                            {item.name}  ${item.price} &times; {item.quantity} 
+                            <img src={item.image} alt={item.title} />
+                            <figcaption>
+                                <p>
+                                    {item.title}
+                                </p>
+                                <p>
+                                    ${item.price} &times; {item.quantity}
+                                </p>
+                            </figcaption>
                             <RemoveButton onClick={() => handleRemove(item.id)} aria-label='remove-Item' role='button'>Remove</RemoveButton>
                         </CartItem>
                     ))}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderLogo, HeaderContainer, HeaderSearch, HeaderCart } from './styles';
-import { toggleCart } from '../../../state/products.slice';
+import { toggleCart, setSearchTerm } from '../../../state/products.slice';
 import SVGComponent from './SvgHeader';
 import logo from '../../../assets/img/logoEcomm.jpg';
 
@@ -14,6 +14,10 @@ const ProductHeader = () => {
         dispatch(toggleCart());
     };
 
+    const handleSearch = (e) => {
+        dispatch(setSearchTerm(e.target.value));
+    }
+
     return (
         <HeaderContainer >
             <HeaderLogo>
@@ -21,7 +25,10 @@ const ProductHeader = () => {
                 <h1><span>Mini Store</span> v3.0</h1>
             </HeaderLogo>
             <HeaderSearch>
-                <input type="text" placeholder="Type some item name..." />
+                <input type="text" 
+                placeholder="Type some item name..." 
+                onChange={handleSearch}
+                />
                 <button>Search 🔍</button>
             </HeaderSearch>
             <HeaderCart onClick={handleCloseClick}>

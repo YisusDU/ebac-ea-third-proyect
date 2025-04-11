@@ -10,7 +10,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
         return response.data;
     } catch (error) {
         console.error('Error Fetching', error);
-        throw error; // Asegúrate de lanzar el error de nuevo
+        throw error; 
     }
 });
 
@@ -30,13 +30,13 @@ export const updateItems = (items = [], item, quantityChange) => {
 
 const productsSlice = createSlice({
 // Name of the Slice and initial state of the products container and the cart closed
-
     name: 'products',
     initialState: {
         products: [],
         stock: [],
         status: IDLE,
         isOpen: false,
+        searchTerm: '',
     },
 
     reducers: {
@@ -48,6 +48,9 @@ const productsSlice = createSlice({
         },
         toggleCart: (state) => {
             state.isOpen = !state.isOpen;
+        },
+        setSearchTerm: (state, action) => {
+            state.searchTerm = action.payload; 
         }
     },
     extraReducers: builder => {
@@ -70,7 +73,7 @@ const productsSlice = createSlice({
 
 // We are going to export the reducers and the actions
 
-export const { addProduct, removeProduct, toggleCart} = productsSlice.actions;
-//Hacemos un destructury:
+export const { addProduct, removeProduct, toggleCart, setSearchTerm} = productsSlice.actions;
+//We make a destructury:
 const {reducer: productsReducer} = productsSlice;
 export default productsReducer;

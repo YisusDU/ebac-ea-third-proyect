@@ -17,7 +17,7 @@ function App() {
         {/* <Login /> */}
         {/* <Registry /> */}
         <Home />
-       {/*  <Checkout /> */}
+        {/* <Checkout /> */}
         {/* <PostCheckout /> */}
         <Routes>
           <Route path="" element={<></>} />
