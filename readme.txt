@@ -55,3 +55,9 @@ Ahora se me ocurre que podemos reutilizar las estructura del carrito para maneja
     Además, quiero añadir un botón para llevar al checkout, dicho botón solo se muestra si hay items en el carrito, si no, el botón add some items cierra el carrito
 
 Con los items añadidos al Checkout, deberíamos poder ver el total a pagar
+
+una vez con el total a pagar, añadí un botón de regresar
+
+Y después añadí una imagen al Checkout form, el estilo que usé me gustó tanto que lo voy a replicar en el login y el registry
+
+Al intentar replicar el estilo en el Login, se generó un bug al aplicarse el media max width 768, recuerdame corregirlo, no se ve la imagen

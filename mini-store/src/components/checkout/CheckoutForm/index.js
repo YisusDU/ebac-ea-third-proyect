@@ -1,6 +1,5 @@
 import React from "react";
-import { CheckoutFormContainer, CheckoutPortade } from "./styles";
-import Portade from "../../../assets/img/ChckoutPortade.jpg"
+import { CheckoutFormContainer, CheckoutPortade, CheckoutFormBuy } from "./styles";
 
 const buttonCLicked = (e) => {
     e.preventDefault();
@@ -9,7 +8,7 @@ const buttonCLicked = (e) => {
 const CheckoutForm = () => {
     return (
         <CheckoutFormContainer>
-            <form>
+            <CheckoutFormBuy>
                 <fieldset>
                     <i>"Simulation Mode"</i>
                     <legend>Shipping Address</legend>
@@ -110,10 +109,8 @@ const CheckoutForm = () => {
                     />
                 </fieldset>
                 <button onClick={buttonCLicked}>Buy</button>
-            </form>
-            <CheckoutPortade>
-                {/* <img src={Portade}/> */}
-            </CheckoutPortade>
+            </CheckoutFormBuy>
+            <CheckoutPortade></CheckoutPortade>
         </CheckoutFormContainer>
     );
 }

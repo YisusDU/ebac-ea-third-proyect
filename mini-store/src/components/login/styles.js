@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import loginPortade from '../../assets/img/portadeLogin.jpg'
+
 
 // Mixins
 const flexCenter = css`
@@ -44,6 +46,7 @@ const LoginContainer = styled.article`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 400px;
   height: 100%;
   justify-content: space-between;
   align-items: center;
@@ -101,18 +104,15 @@ span{
 `;
 const LogOptions = styled.section`
     display: flex;
-    min-height: 600px;
-    height: fit-content;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
-    height: 100%;
+    min-width: 320px;
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
     box-sizing: border-box;
-    padding: 0px;
-    background-color: #efefef;
-    color: #000;
+    overflow: hidden;
     @media (max-width: 768px) {
         flex-direction: column;
         height: auto;
@@ -123,35 +123,16 @@ const LogOptions = styled.section`
 `;
 
 const LoginImg = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 70%;
-    height: 100%;
-    box-sizing: border-box;
+    background-image: url(${loginPortade});
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
-    color:#000;
-    overflow: hidden;
+    background-position: center;
+    border: none;
 
-    img {
+    @media (max-width: 768px){
         width: 100%;
-        min-height: 914px;
-        border-radius: 10px 0px 0px 10px;
-    }
-
-    @media (max-width: 768px) {
-        width: 100%;
-        height: 300px;
-        border-right: none;
-        border-bottom: 1px solid #000;
-        
-        img {
-            width: 100%;
-            border-radius: 10px 0px 0px 10px;
-        }
+        height: 43vh;
     }
 `;
 
@@ -161,7 +142,7 @@ const LoginSignIn = styled.div`
     ${flexColumn}
     width: 30%;
     height: 100%;
-    padding: 20px;
+    padding: 0 0 20px 0;
     box-sizing: border-box;
     background-color: #efefef;
 
@@ -293,11 +274,11 @@ const LoginSignIn = styled.div`
 
 const LoginFieldset = styled.fieldset`
     ${flexColumn}
-    width: 100%;
+    width: 90%;
     height: 40%;
     border-radius: 10px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     z-index: 2;
     box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
@@ -363,6 +344,10 @@ const LoginFieldset = styled.fieldset`
                 color: #fff;
             }
         }
+    }
+    
+    @media (max-width: 768px){
+        margin-top: 50px;
     }
 `;
 export {

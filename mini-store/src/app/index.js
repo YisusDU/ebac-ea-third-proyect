@@ -14,10 +14,10 @@ function App() {
     <>
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
-        {/* <Login /> */}
+        <Login />
         {/* <Registry /> */}
         {/* <Home /> */}
-        <Checkout />
+        {/* <Checkout /> */}
         {/* <PostCheckout /> */}
         <Routes>
           <Route path="" element={<></>} />

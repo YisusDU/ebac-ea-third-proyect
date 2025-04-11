@@ -31,20 +31,20 @@ const CheckoutFormContainer = styled.article`
   justify-content: space-between;
   width: 100%;
   min-width: 320px;
-  gap: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
   box-sizing: border-box;
   overflow: hidden;
+`;
 
-  form{
-    ${flexColumn}
-    width: 60%;
-    padding: 20px;
-    gap: 20px;
-    box-sizing: border-box;
-  }
+const CheckoutFormBuy = styled.form`
+  ${flexColumn}
+  width: 60%;
+  padding: 20px;
+  gap: 20px;
+  box-sizing: border-box;
+
 
   fieldset {
     width: 100%;
@@ -109,7 +109,7 @@ const CheckoutFormContainer = styled.article`
     border: 2px solid ${Theme.colors.secondary};
   
     @media (hover: hover) {
-      &:hover {
+        button:hover {
         background-color: transparent;
         color: ${Theme.colors.primary};
         transform: translateY(-2px);
@@ -127,7 +127,6 @@ const CheckoutFormContainer = styled.article`
 
   @media (prefers-color-scheme: dark) {
     background-color: ${Theme.colors.darkModeBackgroundITem};
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
     label,fieldset legend {
       color: ${Theme.fonts.color.secondary};
     }
@@ -141,10 +140,6 @@ const CheckoutPortade = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-position: 20% center;
-  img{
-    width: 100%;
-    height: 100vh;
-  }
 `;
 
-export { CheckoutFormContainer, CheckoutPortade }
+export { CheckoutFormContainer, CheckoutPortade, CheckoutFormBuy }

@@ -71,6 +71,11 @@ const ItemsHeader = styled.div`
     text-align: center;
     ${titleStyle}
   }
+  @media(prefers-color-scheme: dark){
+    h2{
+      color: #fff;
+    }
+  }
 `;
 
 const ProductList = styled.div`

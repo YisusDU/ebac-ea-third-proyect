@@ -7,7 +7,7 @@ const Checkout = () => {
     return (
         <CheckoutContainer>
             <h1>Checkout</h1>
-            <ItemsBuying message={"Please, check your items before buying"}/>
+            <ItemsBuying message={"Please, check your items before buying!"}/>
             <CheckoutForm />
         </CheckoutContainer>
     );

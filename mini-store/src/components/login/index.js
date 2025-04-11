@@ -18,12 +18,10 @@ const Login = () => {
     <>
       <LoginContainer>
         <LogOptions>
-          <LoginImg>
-            <img src={loginPortade} alt="login-portade"/>
-          </LoginImg>
+          <LoginImg></LoginImg>
           <LoginSignIn>
             <LogTitle>
-              <img src={logo} alt="logo-store"/>
+              <img src={logo} alt="logo-store" />
               <h1>Welcome to <span>Mini Store</span></h1>
             </LogTitle>
             <LoginFieldset>
