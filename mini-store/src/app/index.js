@@ -15,10 +15,10 @@ function App() {
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
         {/* <Login /> */}
-        <Registry />
-        {/* <Home /> */}
-        {/* <Checkout /> */}
-        {/* <PostCheckout /> */}
+        {/* <Registry /> */}
+        <Home />
+        <Checkout />
+        <PostCheckout />
         <Routes>
           <Route path="" element={<></>} />
           <Route path="" element={<></>} />

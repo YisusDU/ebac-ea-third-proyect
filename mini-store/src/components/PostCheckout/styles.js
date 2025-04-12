@@ -16,14 +16,14 @@ const PostCheckoutContainer = styled.article`
     box-sizing: border-box;
     flex-direction: column;
 
-    p{
+    & > p{
       color: ${Theme.fonts.color.primary};
       font-size: .9em;
       text-align: center;
       font-style: italic;
     }
 
-    button {
+    & > button {
       width: 50%;
       margin-top: 20px;
       padding: 12px 24px;
@@ -34,11 +34,10 @@ const PostCheckoutContainer = styled.article`
       transition: all 0.3s ease;
       background-color: ${Theme.colors.secondary};
       border: 2px solid ${Theme.colors.secondary};
-
-  }
+    }
 
     @media (hover: hover){
-      button:hover {
+      & > button:hover {
       background-color: transparent;
       color: ${Theme.colors.primary};
       transform: translateY(-2px);

@@ -65,7 +65,7 @@ const RegistryContainer = styled.article`
     p {
       color: #fff;
     }
-  }
+    }
     
 `;
 

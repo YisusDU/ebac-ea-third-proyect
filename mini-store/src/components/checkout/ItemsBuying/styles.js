@@ -26,7 +26,7 @@ const ItemsContainer = styled.article`
   }
 
   @media (max-width: 768px) {
-    width: 90%;
+    width: 100%;
     margin: 0 0 20px 0;
     box-sizing: border-box;
   }
