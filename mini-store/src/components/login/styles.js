@@ -113,6 +113,7 @@ const LogOptions = styled.section`
     box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
     box-sizing: border-box;
     overflow: hidden;
+
     @media (max-width: 768px) {
         flex-direction: column;
         height: auto;
@@ -264,6 +265,10 @@ const LoginSignIn = styled.div`
         p {
             color: #fff;
         }
+        
+        .notAcount{
+            color: #fff;
+        }
         @media (hover: hover) {
             button:hover, .guest:hover {
                 color: #fff;
@@ -284,6 +289,7 @@ const LoginFieldset = styled.fieldset`
     box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
     h2{
         width: 100%;
+        color: #000;
         font-weight: bold;
         font-size: 1.5em;
         text-align: center;
@@ -299,6 +305,7 @@ const LoginFieldset = styled.fieldset`
         label {
             font-weight: bold;
             margin-bottom: 5px;
+            color: #000;
         }
 
         input {
@@ -339,10 +346,8 @@ const LoginFieldset = styled.fieldset`
     }
 
     @media (prefers-color-scheme: dark) {
-        @media (hover: hover) {
-            button:hover {
-                color: #fff;
-            }
+        h2,form label {
+            color: #fff;
         }
     }
     
