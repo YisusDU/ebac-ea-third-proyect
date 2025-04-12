@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 import Theme from "../../theme/index";
+import resgistryImg from '../../assets/img/registryImg.jpg'
+
 
 // Mixins
 const flexCenter = css`
@@ -46,24 +48,47 @@ const darkMode = css`
 `;
 
 const RegistryContainer = styled.article`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 400px;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #efefef;   
+    box-sizing: border-box;
+
+    @media (prefers-color-scheme: dark) {
+    background-color:rgb(98, 98, 98);
+    color: #fff;
+    p {
+      color: #fff;
+    }
+  }
+    
+`;
+
+const RegistryOptions = styled.section`
     width: 100%;
     height: 100%;
     min-height: 100vh;
     box-sizing: border-box;
-    padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
+    border-radius: 10px;
     background-color: ${Theme.colors.background};
-    
+    overflow: hidden;
+
     @media (max-width: 768px) {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
     ${darkMode}
 `;
 
-const RegistryLogo = styled.section`
+const RegistryLogo = styled.figure`
   top: 10%;
   ${flexColumn}
   text-align: center;
@@ -93,6 +118,7 @@ span{
 }
     
     @media (max-width: 768px) {
+        position: absolute;
         max-width: 250px;
         padding: 10px;
         span{
@@ -101,7 +127,7 @@ span{
     }
 `;
 
-const RegistryForm = styled.section`
+const RegistryForm = styled.form`
     width: 60%;
     height: 100%;
     ${flexColumn}
@@ -170,6 +196,9 @@ const RegistryForm = styled.section`
 
     ${darkMode}
     @media (prefers-color-scheme: dark) {
+        .sign__in{
+            color: #fff;
+        }
         @media (hover: hover) {
             button:hover, form button:hover {
                 color: #fff;
@@ -182,22 +211,25 @@ const RegistryForm = styled.section`
     }
 `;
 
-const RegistryImg = styled.section`
+const RegistryImg = styled.div`
     width: 40%;
-    ${flexColumn}
-    overflow: hidden;
-    border-radius: 10px;
-    img{
+    background-image: url(${resgistryImg});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    border: none;
+
+    @media (max-width: 768px){
         width: 100%;
-        object-fit: cover;
-        max-height: 930px;
-        min-height: 800px;
-        border-radius: 10px 10px 10px 10px;
-    }
-    @media (max-width: 768px) {
-        display: none;
+        height: 43vh;
     }
 `;
 
 
-export { RegistryForm, RegistryImg, RegistryContainer, RegistryLogo };
+export { 
+    RegistryForm, 
+    RegistryImg, 
+    RegistryContainer, 
+    RegistryLogo,
+    RegistryOptions 
+};

@@ -14,8 +14,8 @@ function App() {
     <>
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
-        <Login />
-        {/* <Registry /> */}
+        {/* <Login /> */}
+        <Registry />
         {/* <Home /> */}
         {/* <Checkout /> */}
         {/* <PostCheckout /> */}

@@ -61,3 +61,6 @@ una vez con el total a pagar, añadí un botón de regresar
 Y después añadí una imagen al Checkout form, el estilo que usé me gustó tanto que lo voy a replicar en el login y el registry
 
 Al intentar replicar el estilo en el Login, se generó un bug al aplicarse el media max width 768, recuerdame corregirlo, no se ve la imagen
+*corregido
+
+Ahora será bueno aplicar lo aprendido al registro de usuarios

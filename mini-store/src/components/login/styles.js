@@ -54,6 +54,16 @@ const LoginContainer = styled.article`
   background-color: #efefef;  
   color: white;
   box-sizing: border-box;
+
+  @media (prefers-color-scheme: dark) {
+    background-color:rgb(98, 98, 98);
+    color: #fff;
+    p {
+      color: #fff;
+    }
+  }
+
+
 `;
 
 const LogTitle = styled.section`
