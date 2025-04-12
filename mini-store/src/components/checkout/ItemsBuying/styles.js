@@ -7,7 +7,7 @@ const titleStyle = css`
   font-size: 1.5em;
 `;
 
-const ItemsContainer = styled.article`
+const ItemsContainer = styled.section`
   width: 100%;
   min-width: 320px;
   padding: 20px;

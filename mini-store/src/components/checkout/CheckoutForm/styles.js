@@ -25,7 +25,7 @@ const buttonBase = css`
   transition: all 0.3s ease;
 `;
 
-const CheckoutFormContainer = styled.article`
+const CheckoutFormContainer = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -36,6 +36,13 @@ const CheckoutFormContainer = styled.article`
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
   box-sizing: border-box;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    width: 100%;
+    min-width: 320px;
+    box-sizing: border-box;
+  }
 `;
 
 const CheckoutFormBuy = styled.form`
@@ -120,7 +127,7 @@ const CheckoutFormBuy = styled.form`
   }
 
   @media (max-width: 768px) {
-    width: 90%;
+    width: 100%;
     min-width: 320px;
     box-sizing: border-box;
   }
@@ -140,6 +147,12 @@ const CheckoutPortade = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-position: 20% center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 43vh;
+    background-position: center  40%;
+  }
 `;
 
 export { CheckoutFormContainer, CheckoutPortade, CheckoutFormBuy }
