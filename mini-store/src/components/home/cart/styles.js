@@ -23,8 +23,12 @@ const CartContainer = styled.aside`
     hr{
         margin: 10px 0;
     }
+    
+    svg{
+        width: 40%;
+    }
 
-    p{
+    p{  
         font-size: 1rem;
         margin-bottom: 5px;
     }
@@ -34,7 +38,7 @@ const CartContainer = styled.aside`
         background-color: #919191;
 
         p{
-            color: #000;
+            color: #0f0f0f;
         }
     }
 `;

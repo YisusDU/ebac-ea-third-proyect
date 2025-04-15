@@ -2,8 +2,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCart, removeProduct } from '../../../state/products.slice';
 import { CartContainer, CartItem, RemoveButton, CloseButton, BuyButton } from './styles';
+import { useNavigate } from "react-router-dom";
+import CartSvg from "./CartSVG/index"
 
 const Cart = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const items = useSelector(state => state.cart.products);
     const isOpen = useSelector(state => state.cart.isOpen);
@@ -16,13 +19,20 @@ const Cart = () => {
         dispatch(removeProduct(id));
     };
 
+    const handleCheckout = () => {
+        navigate("/checkout");
+    }
+
     return (
         <CartContainer isOpen={isOpen}>
             <CloseButton role='check-box' onClick={handleCloseClick} aria-label='close-Cart'>X</CloseButton>
             <h2>Your Cart</h2>
             <hr />
             {items.length === 0 ? (
-                <p>No items in the cart!.</p>
+                <>
+                    <CartSvg />
+                    <p>No items in the cart!.</p>
+                </>
             ) : (
                 <ul>
                     {items.map(item => (
@@ -45,7 +55,7 @@ const Cart = () => {
                     ))}
                 </ul>
             )}
-            {items.length > 0 ? (<BuyButton>Buy</BuyButton>) : (<BuyButton onClick={handleCloseClick}>⬅️Add some items, please!</BuyButton>)}
+            {items.length > 0 ? (<BuyButton onClick={handleCheckout}>Buy</BuyButton>) : (<BuyButton onClick={handleCloseClick}>⬅️Add some items, please!</BuyButton>)}
         </CartContainer>
     );
 };

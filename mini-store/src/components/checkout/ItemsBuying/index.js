@@ -5,12 +5,11 @@ import { ItemsContainer, ProductList, ProductItem, ItemsList, ItemsTotal, ItemsH
 const ItemsBuying = ({ message }) => {
     const items = useSelector(state => state.cart.products);
 
+    
+
     return (
         <ItemsContainer>
             <ItemsHeader>
-                <button>
-                    ⬅️Back
-                </button>
                 <h2>{message}</h2>
             </ItemsHeader>
             <div>

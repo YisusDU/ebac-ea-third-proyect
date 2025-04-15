@@ -13,15 +13,18 @@ function App() {
   return (
     <>
       <ThemeProvider theme={Theme}>
-        <GlobalStyles />
+        {/* <GlobalStyles />
         <Login />
         <Registry />
         <Home />
         <Checkout />
-        <PostCheckout />
+        <PostCheckout /> */}
         <Routes>
-          <Route path="" element={<></>} />
-          <Route path="" element={<></>} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Registry />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/postcheckout" element={<PostCheckout />} />
         </Routes>
       </ThemeProvider>
     </>

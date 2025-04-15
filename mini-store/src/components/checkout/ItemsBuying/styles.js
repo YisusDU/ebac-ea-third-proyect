@@ -48,22 +48,6 @@ const ItemsHeader = styled.div`
   border-radius: 5px;
   gap: 10px;
 
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 10px 20px;
-    transition: scale 0.3s ease-in-out; 
-    @media (hover: hover) {
-      &:hover{
-          background-color: #0056b3;
-          scale: 1.05;
-          transition: scale 0.s ease-in-out; 
-      } 
-    }
-  }
 
   h2 {
     width: 100%;

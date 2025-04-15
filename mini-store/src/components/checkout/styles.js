@@ -7,7 +7,7 @@ const CheckoutContainer = styled.article`
   min-height: 100vh;
   padding: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center ;
   flex-wrap: wrap;
   gap: 20px;
@@ -22,6 +22,22 @@ const CheckoutContainer = styled.article`
     font-size: 2em;
     color: ${Theme.fonts.color.secondary};
     margin-bottom: 20px;
+  }
+  button {
+    background-color: rgb(121, 186, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: scale 0.3s ease-in-out; 
+    @media (hover: hover) and (pointer: fine) {
+      &:hover{
+          background-color:rgb(121, 186, 255);
+          scale: 1.05;
+          transition: scale 0.s ease-in-out; 
+      } 
+    }
   }
 
   @media (max-width: 768px) {

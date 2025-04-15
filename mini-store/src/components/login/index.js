@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "../../assets/img/logoEcomm.jpg"
-import loginPortade from '../../assets/img/portadeLogin.jpg'
-
+import { useNavigate } from "react-router-dom";
 import {
   LoginContainer,
   LogTitle,
@@ -12,6 +11,19 @@ import {
 } from "./styles";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleValidation = () => {
+    navigate("/home");
+  }
+
+  const handleRegister = () => {
+    navigate("/register"); 
+  }
+
+  const handleGuest = () => {
+    navigate("/home");
+  }
 
 
   return (
@@ -42,13 +54,13 @@ const Login = () => {
                   placeholder="Password123"
                 />
               </form>
-              <button>Login</button>
+              <button onClick={handleValidation}>Login</button>
             </LoginFieldset>
             <p>Or......</p>
             <h2 className="notAcount">Don't you have an account?</h2>
-            <button>Go to register!</button>
+            <button onClick={handleRegister}>Go to register!</button>
             <p>Or......</p>
-            <button className="guest" >Continue as guest</button>
+            <button className="guest" onClick={handleGuest}>Continue as guest</button>
           </LoginSignIn>
         </LogOptions>
       </LoginContainer>

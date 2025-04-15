@@ -37,6 +37,7 @@ const productsSlice = createSlice({
         status: IDLE,
         isOpen: false,
         searchTerm: '',
+        user: []
     },
 
     reducers: {
@@ -51,6 +52,17 @@ const productsSlice = createSlice({
         },
         setSearchTerm: (state, action) => {
             state.searchTerm = action.payload; 
+        },
+        clearProducts: (state) => {
+            state.products = [];
+            state.isOpen = false;
+        },
+        addUser: (state, action) => {
+            state.user = {
+                name: action.payload.name,
+                email: action.payload.email,
+                password: action.payload.password,
+            };
         }
     },
     extraReducers: builder => {
@@ -73,7 +85,7 @@ const productsSlice = createSlice({
 
 // We are going to export the reducers and the actions
 
-export const { addProduct, removeProduct, toggleCart, setSearchTerm} = productsSlice.actions;
+export const { addProduct, removeProduct, toggleCart, setSearchTerm, clearProducts, addUser } = productsSlice.actions;
 //We make a destructury:
 const {reducer: productsReducer} = productsSlice;
 export default productsReducer;

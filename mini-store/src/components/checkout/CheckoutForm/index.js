@@ -1,11 +1,18 @@
 import React from "react";
 import { CheckoutFormContainer, CheckoutPortade, CheckoutFormBuy } from "./styles";
+import { useNavigate} from "react-router-dom";
 
-const buttonCLicked = (e) => {
-    e.preventDefault();
-}
+
 
 const CheckoutForm = () => {
+    const navigate = useNavigate();
+
+    const buttonCLicked = (e) => {
+        e.preventDefault();
+        alert("You have completed the purchase!");
+        navigate("/postCheckout");
+    }
+
     return (
         <CheckoutFormContainer>
             <CheckoutFormBuy>

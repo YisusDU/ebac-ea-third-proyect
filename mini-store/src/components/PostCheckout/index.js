@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { clearProducts } from '../../state/products.slice';
 import ItemsBuying from '../checkout/ItemsBuying';
 import SVGCheck from './SvgCheck';
 import {
@@ -6,14 +9,22 @@ import {
 } from './styles';
 
 const PostCheckout = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleBackToHome = () => {
+        dispatch( clearProducts());
+        navigate('/home');
+    }
+
     return (
-        <PostCheckoutContainer>  
+        <PostCheckoutContainer>
             <SVGCheck />
-            <ItemsBuying message={"Thank you for your purchase!"}/>
+            <ItemsBuying message={"Thank you for your purchase!"} />
             <p>
                 *You will receive an email confirmation shortly.
             </p>
-            <button>
+            <button onClick={handleBackToHome}>
                 Back to Home
             </button>
         </PostCheckoutContainer>
