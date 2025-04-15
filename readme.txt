@@ -64,3 +64,18 @@ Al intentar replicar el estilo en el Login, se generó un bug al aplicarse el me
 *corregido
 
 Ahora será bueno aplicar lo aprendido al registro de usuarios
+
+He estado corrigiendo estilos para coordinar el dark mode de todos los componentes y tambien para los media max-width de 768, pues se quedaba la img muy grande al 
+costado; tambien estandaricé el min-width de 400px en componentes padre
+
+Queda pendiente:
+
+1 arreglar el header de Home, y establecer estilos responsivos al ProductsList, ademas de  dark mode 
+
+2 Será bueno anclar el Header a la parte superior cuando corrija los estilos 
+
+3 hacer que los botones te envíen a la pagina correspondiente
+
+4 Aplicar estilos responsivos a la validación de inicicar sesion del Login
+
+5 Crear las pruebas automatizadas

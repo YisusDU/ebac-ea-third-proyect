@@ -4,7 +4,7 @@ import Theme from "../../theme/index.js";
 
 const PostCheckoutContainer = styled.article`
     width: 100%;
-    min-width: 300px;
+    min-width: 400px;
     min-height: 100vh;
     padding: 40px;
     display: flex;
