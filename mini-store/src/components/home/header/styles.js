@@ -3,13 +3,25 @@ import styled from 'styled-components';
 const HeaderContainer = styled.header`
   display: flex;
   width: 100%;
-  min-width: 400px;
+  min-width: 460px;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   background-color: #282c34;
   color: white;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 10px 10px;
+    picture{
+      min-width: 150px;
+      h1{
+        /* display: none; */
+        font-size: .9rem;  
+      }
+    }
+
+  }
 `;
 
 const HeaderLogo = styled.picture`
@@ -22,7 +34,7 @@ const HeaderLogo = styled.picture`
   min-width: 225px;
   height: 5%;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   color: #000;
   box-sizing: border-box;
   gap: 10px;
@@ -50,7 +62,7 @@ span{
 }
 `;
 
-const HeaderSearch = styled.h1`
+const HeaderSearch = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -74,12 +86,13 @@ const HeaderSearch = styled.h1`
 
 `;
 
-const HeaderCart = styled.div`
+const HeaderCart = styled.i`
     display: flex;
     align-items: center;
     cursor: pointer;
     position: relative;
     width: 2%;
+    min-width: 25px;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     padding: 10px;

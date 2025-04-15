@@ -46,7 +46,7 @@ const LoginContainer = styled.article`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 400px;
+  min-width: 460px;
   height: 100%;
   justify-content: space-between;
   align-items: center;

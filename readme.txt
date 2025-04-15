@@ -71,11 +71,10 @@ costado; tambien estandaricé el min-width de 400px en componentes padre
 Queda pendiente:
 
 1 arreglar el header de Home, y establecer estilos responsivos al ProductsList, ademas de  dark mode 
-
-2 Será bueno anclar el Header a la parte superior cuando corrija los estilos 
+    -Decidí actualizar el min-width de 400 a 460 en todos los componentes excepto cart
 
 3 hacer que los botones te envíen a la pagina correspondiente
 
-4 Aplicar estilos responsivos a la validación de inicicar sesion del Login
+4 Aplicar estilos responsivos a la validación de iniciar sesion del Login
 
 5 Crear las pruebas automatizadas
