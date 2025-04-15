@@ -72,6 +72,7 @@ Queda pendiente:
 
 1 arreglar el header de Home, y establecer estilos responsivos al ProductsList, ademas de  dark mode 
     -Decidí actualizar el min-width de 400 a 460 en todos los componentes excepto cart
+    -Noté que el botón comprar en el checkout no tiene estilos interactivos, vamos a agregarle algunos
 
 3 hacer que los botones te envíen a la pagina correspondiente
 

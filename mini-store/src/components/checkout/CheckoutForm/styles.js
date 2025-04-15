@@ -112,17 +112,24 @@ const CheckoutFormBuy = styled.form`
 
   button {
     ${buttonBase}
-    background-color: ${Theme.colors.secondary};
-    border: 2px solid ${Theme.colors.secondary};
+    background-color:rgba(8, 186, 97, 0.58);
+    border: 2px solid ;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
   
-    @media (hover: hover) {
-        button:hover {
-        background-color: transparent;
-        color: ${Theme.colors.primary};
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          font-weight: bold;
+          background-color:rgb(7, 220, 114);
+          color:rgb(255, 255, 255);
+          transform: translateY(-2px);
+          transition: all 0.3s ease;
+        }
+      &:active {
+        scale: 0.95;
       }
-    
     }
   }
 

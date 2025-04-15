@@ -108,9 +108,9 @@ const CheckoutForm = () => {
                         tabIndex={9}
                     />
                 </fieldset>
-                <button onClick={buttonCLicked}>Buy</button>
+                <button onClick={buttonCLicked}>Complete purchase!</button>
             </CheckoutFormBuy>
-            <CheckoutPortade></CheckoutPortade>
+            <CheckoutPortade />
         </CheckoutFormContainer>
     );
 }
