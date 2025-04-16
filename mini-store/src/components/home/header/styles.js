@@ -1,4 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const Svg = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  width: 2%;
+  min-width: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 10px;
+  transition: background-color 0.3s ease-in-out;
+
+  svg {
+      width: 100%;
+      height: auto;
+  }
+`;
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -86,24 +106,11 @@ const HeaderSearch = styled.div`
 
 `;
 
+
 const HeaderCart = styled.i`
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    width: 2%;
-    min-width: 25px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    padding: 10px;
-    transition: background-color 0.3s ease-in-out;
+  ${Svg}
 
-    svg {
-        width: 100%;
-        height: auto;
-    }
-
-    span {
+  span {
         position: absolute;
         top: -5px;
         right: -10px;
@@ -114,9 +121,29 @@ const HeaderCart = styled.i`
         font-size: 17px;
     }
 
-    &:hover {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
         background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+`;
+const HeaderUser = styled.i`
+    ${Svg}
+    p{
+      width: auto;
+      text-wrap: nowrap;
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+      font-style: italic;
+      
+    }
+
+  @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
     }
 `;
 
-export { HeaderLogo, HeaderContainer, HeaderSearch, HeaderCart };
+export { HeaderLogo, HeaderContainer, HeaderSearch, HeaderUser, HeaderCart };

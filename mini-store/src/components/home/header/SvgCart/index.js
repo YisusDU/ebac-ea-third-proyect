@@ -1,5 +1,5 @@
 import * as React from "react";
-const SVGComponent = (props) => (
+const SVGCart = (props) => (
     <svg
         role="img"
         alt="cart-icon"
@@ -21,4 +21,4 @@ const SVGComponent = (props) => (
         />
     </svg>
 );
-export default SVGComponent;
+export default SVGCart;

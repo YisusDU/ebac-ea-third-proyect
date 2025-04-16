@@ -317,6 +317,16 @@ const LoginFieldset = styled.fieldset`
             margin-bottom: 5px;
             color: #000;
         }
+        .error-message, .message-space {
+            height: 20px;
+            display: block;
+            margin-top: 4px;
+            font-size: 0.9rem;
+        }
+
+        .error-message {
+            color: #f44336;
+        }
 
         input {
             width: 100%;
@@ -332,6 +342,13 @@ const LoginFieldset = styled.fieldset`
                 border-color: #007bff;
                 box-shadow: 0 0 5px rgba(0,123,255,0.3);
             }
+            &.valid {
+                border: 2px solid #4CAF50;
+            }
+    
+            &.invalid {
+                border: 2px solid #f44336;
+            }
         }
     }
         button {
@@ -340,25 +357,31 @@ const LoginFieldset = styled.fieldset`
         border: 2px solid #007bff;
         color: white;
         width: 100%;
-
-        ${buttonHover}
-        &:hover {
-          color: #007bff;
-          box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
     }
 
     ${darkModeText}
-    @media (hover: hover) {
+    @media (hover: hover) and (pointer: fine){
         button:hover {
-            color: #fff;
+            ${buttonHover}
+            color: #007bff;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        
         }
     }
 
     @media (prefers-color-scheme: dark) {
-        h2,form label {
+        h2,form label{
             color: #fff;
         }
+
+        @media (hover: hover) and (pointer: fine){
+            button:hover {
+                ${buttonHover}
+                color: #fff;
+                box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            }
+        }
+
     }
     
     @media (max-width: 768px){

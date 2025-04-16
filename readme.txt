@@ -85,5 +85,7 @@ Queda pendiente:
             resolverlo
 
 4 Aplicar estilos interactivos a la validación de iniciar sesion del Login
+    -Será necesario añadir un verificador de si el usuario está logeado o no, y posteriormente añadir un boton de log out al header
+    -La lógica está lista, pero el estilo del icono necesita ajustes
 
 5 Crear las pruebas automatizadas

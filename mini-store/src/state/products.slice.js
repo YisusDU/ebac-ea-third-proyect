@@ -37,7 +37,8 @@ const productsSlice = createSlice({
         status: IDLE,
         isOpen: false,
         searchTerm: '',
-        user: []
+        user: [],
+        isLogin: false,
     },
 
     reducers: {
@@ -64,7 +65,10 @@ const productsSlice = createSlice({
                 password: action.payload.password,
             };
             console.log("User added", state.user);
-        }
+        },
+        verifyLogin: (state, action) => {
+            state.isLogin = action.payload;
+        },
     },
     extraReducers: builder => {
         builder
@@ -86,7 +90,7 @@ const productsSlice = createSlice({
 
 // We are going to export the reducers and the actions
 
-export const { addProduct, removeProduct, toggleCart, setSearchTerm, clearProducts, addUser } = productsSlice.actions;
+export const { addProduct, removeProduct, toggleCart, setSearchTerm, clearProducts, addUser, verifyLogin } = productsSlice.actions;
 //We make a destructury:
 const {reducer: productsReducer} = productsSlice;
 export default productsReducer;

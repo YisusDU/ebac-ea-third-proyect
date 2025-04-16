@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Theme from "../theme";
-import GlobalStyles from "../theme/GlobalStyles";
 import Login from "../components/Login";
 import Registry from "../components/Registry";
 import Home from "../components/home";
