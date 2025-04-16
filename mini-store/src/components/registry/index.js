@@ -9,18 +9,18 @@ import {
     RegistryLogo,
     RegistryOptions
 } from "./styles.js";
-import { addUser } from "../../state/products.slice"; 
+import { addUser } from "../../state/products.slice";
 
 const Registry = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleAddUser = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         const formData = new FormData(e.target);
 
         try {
-            await dispatch(addUser({
+            dispatch(addUser({
                 name: formData.get('name'),
                 email: formData.get('email'),
                 password: formData.get('password'),

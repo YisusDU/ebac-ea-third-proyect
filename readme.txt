@@ -92,4 +92,7 @@ Queda pendiente:
     -Me gustaría que los botones de los productos en productList tengan un estilo active
     -tambien noté que el span del logo en Login se corta en full screen
 
-5 Crear las pruebas automatizadas
+5 Optimizar el codigo con custom hooks
+    -noté que al cambiar de usuario, el carrito se queda con los productos que teníamos recientemente agregados, debemos vaciarlo al cerrar sesion
+
+6 Crear las pruebas automatizadas

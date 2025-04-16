@@ -5,8 +5,6 @@ import { ItemsContainer, ProductList, ProductItem, ItemsList, ItemsTotal, ItemsH
 const ItemsBuying = ({ message }) => {
     const items = useSelector(state => state.cart.products);
 
-    
-
     return (
         <ItemsContainer>
             <ItemsHeader>
