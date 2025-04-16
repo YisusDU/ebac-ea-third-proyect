@@ -100,13 +100,14 @@ span{
     background-color: #51bbbba8;
     border-radius: 10px;
     padding: 0 5px;
+    text-wrap: nowrap;
 }
     
     @media (max-width: 768px) {
         max-width: 250px;
         padding: 10px;
         position: absolute;
-        top: -285px;
+        top: -360px;
         span{
             color: #fff;
         }
