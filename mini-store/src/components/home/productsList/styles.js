@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StoreContainer = styled.main`
     margin: 0 auto;
-    min-width: 460px;
+    min-width: 480px;
 
     @media (prefers-color-scheme: dark) {
         background-color: #cdcbcb;

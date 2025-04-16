@@ -1,29 +1,34 @@
 import styled, { css } from 'styled-components';
 
 const Svg = css`
+  max-width: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   position: relative;
-  width: 2%;
   min-width: 25px;
   background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
   padding: 10px;
   transition: background-color 0.3s ease-in-out;
 
   svg {
-      width: 100%;
+      width: 80%;
+      min-width: 25px;
       height: auto;
   }
+  @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
 `;
 
 const HeaderContainer = styled.header`
   display: flex;
   width: 100%;
-  min-width: 460px;
+  min-width: 480px;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
@@ -34,7 +39,7 @@ const HeaderContainer = styled.header`
   @media (max-width: 768px) {
     padding: 10px 10px;
     picture{
-      min-width: 150px;
+      min-width: 90px;
       h1{
         /* display: none; */
         font-size: .9rem;  
@@ -51,17 +56,19 @@ const HeaderLogo = styled.picture`
   align-items: center;
   text-align: center;
   width: 20%;
+  max-width: 200px;
   min-width: 225px;
   height: 5%;
   border-radius: 10px;
-  padding: 10px;
   color: #000;
+  padding: 10px;
   box-sizing: border-box;
   gap: 10px;
 
   img{
     width: 40%;
     max-width: 200px;
+    min-width: 50px;
     border-radius: 10px;
     box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
     }
@@ -99,7 +106,7 @@ const HeaderSearch = styled.div`
   }
   button {
     text-wrap: nowrap;
-    padding: 10px;
+    padding: 10px 0;
     border-radius: 5px;
     border: none;
   }
@@ -109,6 +116,8 @@ const HeaderSearch = styled.div`
 
 const HeaderCart = styled.i`
   ${Svg}
+  width: 5%;
+  border-radius: 50%;
 
   span {
         position: absolute;
@@ -121,29 +130,31 @@ const HeaderCart = styled.i`
         font-size: 17px;
     }
 
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-      }
-    }
 `;
 const HeaderUser = styled.i`
+    width: 5%;
+    height: 5%;
+    border-radius: 10px;
     ${Svg}
     p{
       width: auto;
-      text-wrap: nowrap;
       text-align: center;
       color: #fff;
       font-weight: bold;
       font-style: italic;
-      
+      margin: 0;
     }
 
-  @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-      }
+  @media (max-width: 768px) {
+    svg{
+      display: none;}
+    p{
+      display: flex;
+      font-size: .8rem;
     }
+  }
+
+  
 `;
 
 export { HeaderLogo, HeaderContainer, HeaderSearch, HeaderUser, HeaderCart };

@@ -87,5 +87,6 @@ Queda pendiente:
 4 Aplicar estilos interactivos a la validación de iniciar sesion del Login
     -Será necesario añadir un verificador de si el usuario está logeado o no, y posteriormente añadir un boton de log out al header
     -La lógica está lista, pero el estilo del icono necesita ajustes
+    -He notado que el boton superior Back en el Checkout está desalineado, necesita corregir estilos, al igual que el ItemsBuying
 
 5 Crear las pruebas automatizadas

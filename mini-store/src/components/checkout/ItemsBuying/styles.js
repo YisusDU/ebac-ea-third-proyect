@@ -3,7 +3,7 @@ import Theme from "../../../theme";
 
 const titleStyle = css`
   color: ${Theme.colors.primary};
-  margin-bottom: 20px;
+  margin: 0;
   font-size: 1.5em;
 `;
 
@@ -47,7 +47,7 @@ const ItemsHeader = styled.div`
   padding: 10px;
   border-radius: 5px;
   gap: 10px;
-
+  
 
   h2 {
     width: 100%;
@@ -73,6 +73,8 @@ const ItemsList = styled.ul`
   grid-template-columns: repeat(2, minmax(200px, 1fr));
   gap: 10px;
   list-style: none;
+  margin: auto;
+  padding: 0;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, minmax(200px, 1fr));

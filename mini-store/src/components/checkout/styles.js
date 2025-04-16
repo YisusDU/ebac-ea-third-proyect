@@ -43,7 +43,7 @@ const CheckoutContainer = styled.article`
   @media (max-width: 768px) {
     padding: 20px;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
   }
   
   @media (prefers-color-scheme: dark){
