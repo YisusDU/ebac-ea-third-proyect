@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import logo from "../../assets/img/logoEcomm.jpg"
 import { useNavigate } from "react-router-dom";
 import {
@@ -12,13 +13,29 @@ import {
 
 const Login = () => {
   const navigate = useNavigate();
+  const registeredUser = useSelector((state) => state.cart.user);
 
-  const handleValidation = () => {
-    navigate("/home");
+  const handleValidation = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    if (!registeredUser) {
+      alert('No registered users found. Please register first.');
+      return;
+    }
+
+    if (email === registeredUser.email && password === registeredUser.password) {
+      alert('Login successful!');
+      navigate("/home");
+    } else {
+      alert('Invalid email or password');
+    }
   }
 
   const handleRegister = () => {
-    navigate("/register"); 
+    navigate("/register");
   }
 
   const handleGuest = () => {
@@ -30,7 +47,7 @@ const Login = () => {
     <>
       <LoginContainer>
         <LogOptions>
-          <LoginImg></LoginImg>
+          <LoginImg />
           <LoginSignIn>
             <LogTitle>
               <img src={logo} alt="logo-store" />
@@ -38,13 +55,14 @@ const Login = () => {
             </LogTitle>
             <LoginFieldset>
               <h2>Nice to see you again!</h2>
-              <form>
+              <form onSubmit={handleValidation}>
                 <label for="email">Email:</label>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   placeholder="example@email.com"
+                  required
                 />
                 <label for="password">Password:</label>
                 <input
@@ -52,9 +70,10 @@ const Login = () => {
                   type="text"
                   name="password"
                   placeholder="Password123"
+                  required
                 />
               </form>
-              <button onClick={handleValidation}>Login</button>
+              <button type="submit">Login</button>
             </LoginFieldset>
             <p>Or......</p>
             <h2 className="notAcount">Don't you have an account?</h2>

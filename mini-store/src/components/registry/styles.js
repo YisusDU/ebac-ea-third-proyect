@@ -127,7 +127,7 @@ span{
     }
 `;
 
-const RegistryForm = styled.form`
+const RegistryForm = styled.div`
     width: 60%;
     height: 100%;
     ${flexColumn}

@@ -13,12 +13,6 @@ function App() {
   return (
     <>
       <ThemeProvider theme={Theme}>
-        {/* <GlobalStyles />
-        <Login />
-        <Registry />
-        <Home />
-        <Checkout />
-        <PostCheckout /> */}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Registry />} />

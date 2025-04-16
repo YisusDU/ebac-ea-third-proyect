@@ -63,6 +63,7 @@ const productsSlice = createSlice({
                 email: action.payload.email,
                 password: action.payload.password,
             };
+            console.log("User added", state.user);
         }
     },
     extraReducers: builder => {

@@ -75,7 +75,15 @@ Queda pendiente:
     -Noté que el botón comprar en el checkout no tiene estilos interactivos, vamos a agregarle algunos
 
 3 hacer que los botones te envíen a la pagina correspondiente
+    -Al hacer click en el botón Back to home de PostCheckout, quiero que se limpien los productos que ya compramos del carrito
+        -Creamos un nuevo reducer en el  estado llamado clearProducts que se despacha al hacer click en dicho boton
+    -Note que el componente Resgistry quedaría mejor si realmente hacemos que se añada un usuario a la base de datos fake en el estado
+        -creamos un reducer llamado addUser
+        -instalamos una librería para almacenar los datos del usuario localmente
+        -modificamos la lógica del formulario para hacer que se muestre un alert de usuario añadidos
+            --Esto esta fallando, o estaba, tal paraece que había un form anidado en otro form, lo que es ilegal en html, gracias a la consola del navegador, pude 
+            resolverlo
 
-4 Aplicar estilos responsivos a la validación de iniciar sesion del Login
+4 Aplicar estilos interactivos a la validación de iniciar sesion del Login
 
 5 Crear las pruebas automatizadas
