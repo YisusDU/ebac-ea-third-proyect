@@ -10,6 +10,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const items = useSelector(state => state.cart.products);
     const isOpen = useSelector(state => state.cart.isOpen);
+    const isLogin = useSelector((state) => state.cart.isLogin);
 
     const handleCloseClick = () => {
         dispatch(toggleCart());
@@ -22,6 +23,31 @@ const Cart = () => {
     const handleCheckout = () => {
         navigate("/checkout");
     }
+
+    const handleLogin = () => {
+        alert("You must be registered and logged in to buy!");
+        dispatch(toggleCart());
+        navigate("/");
+    }
+
+    const renderBuyButton = () => {
+        if (items.length === 0) {
+            return (
+                <BuyButton className='buy-button' onClick={handleCloseClick}>
+                    ⬅️Add some items, please!
+                </BuyButton>
+            );
+        }
+
+        return (
+            <BuyButton {...(isLogin 
+                ? { className: 'buy-button', onClick: handleCheckout }
+                : { className: 'buy-button-disabled', onClick: handleLogin }
+            )}>
+                Buy
+            </BuyButton>
+        );
+    };
 
     return (
         <CartContainer isOpen={isOpen}>
@@ -55,7 +81,7 @@ const Cart = () => {
                     ))}
                 </ul>
             )}
-            {items.length > 0 ? (<BuyButton onClick={handleCheckout}>Buy</BuyButton>) : (<BuyButton onClick={handleCloseClick}>⬅️Add some items, please!</BuyButton>)}
+            {renderBuyButton()}
         </CartContainer>
     );
 };

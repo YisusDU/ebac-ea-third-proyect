@@ -88,5 +88,7 @@ Queda pendiente:
     -Será necesario añadir un verificador de si el usuario está logeado o no, y posteriormente añadir un boton de log out al header
     -La lógica está lista, pero el estilo del icono necesita ajustes
     -He notado que el boton superior Back en el Checkout está desalineado, necesita corregir estilos, al igual que el ItemsBuying
+    -Será bueno añadir un verificador al carrito sobre si el usuario está logueado o no, para proceder con la compra
+    -Me gustaría que los botones de los productos en productList tengan un estilo active
 
 5 Crear las pruebas automatizadas

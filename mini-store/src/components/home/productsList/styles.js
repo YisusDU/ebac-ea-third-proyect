@@ -60,6 +60,11 @@ const Product = styled.article`
             background-color: #282c34d1;
             transition: all 0.3s ease;
         }
+        button:active {
+            background-color: #282c3499;
+            scale: 0.99;
+            transition: all 0.1s ease;
+        }
     }
 
     @media (prefers-color-scheme: dark) {

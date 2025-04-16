@@ -33,6 +33,18 @@ const CartContainer = styled.aside`
         margin-bottom: 5px;
     }
 
+    .buy-button{
+        background-color: #007bff;
+        color: white;
+        border: none; 
+    }
+
+    .buy-button-disabled{
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;  
+    }
+
     @media (prefers-color-scheme: dark){
         color: #fff;
         background-color: #919191;
@@ -41,10 +53,16 @@ const CartContainer = styled.aside`
             color: #0f0f0f;
         }
     }
+
+    @media (hover: hover) and (pointer:fine){
+        .buy-button:hover{
+            scale: 1.05;
+            transition: scale 0.s ease-in-out; 
+        }
+    }
 `;
 
 const BuyButton = styled.button`
-    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
@@ -53,11 +71,7 @@ const BuyButton = styled.button`
     transition: scale 0.3s ease-in-out; 
 
 
-    &:hover{
-        background-color: #0056b3;
-        scale: 1.05;
-        transition: scale 0.s ease-in-out; 
-    }
+    
 `;
 
 const CartItem = styled.li`
