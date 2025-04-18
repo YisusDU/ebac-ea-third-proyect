@@ -94,5 +94,9 @@ Queda pendiente:
 
 5 Optimizar el codigo con custom hooks
     -noté que al cambiar de usuario, el carrito se queda con los productos que teníamos recientemente agregados, debemos vaciarlo al cerrar sesion
+    -corregí las dependencias de desarrollo y las de producción
+    -Antes de las pruebas, quiero separar los productos de ProductsList en secciones, si es que el JSON lo permite, como dama, caballero, etc.
+        -Para ello vamos a modificar el useProductos, para devolver los productos organizados por categorías
+        -Y un boton de reset de la barra de búsqueda
 
 6 Crear las pruebas automatizadas

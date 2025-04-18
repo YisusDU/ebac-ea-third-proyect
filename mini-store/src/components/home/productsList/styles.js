@@ -11,13 +11,15 @@ const StoreContainer = styled.main`
 `;
 
 const ProductsArray = styled.section`
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
     padding: 1rem;
 `;
 
-const Product = styled.article`
+const Product = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Align items to the top and bottom */
@@ -74,6 +76,33 @@ const Product = styled.article`
 
 `;
 
+const CategorySection = styled.article`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: ${({ theme }) => theme.colors.primary};
+        border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+        padding-bottom: 0.5rem;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    ${Product} {
+        min-width: 200px;
+        scroll-snap-align: start;
+    }
+`;
+
+
+
 //Loading and error styles
 const LoadingOrError = styled.article`
   font-size: 50px;
@@ -96,4 +125,4 @@ const LoadingOrError = styled.article`
   }
 `;
 
-export { StoreContainer, ProductsArray, Product, LoadingOrError };
+export { StoreContainer, ProductsArray, Product, LoadingOrError, CategorySection };

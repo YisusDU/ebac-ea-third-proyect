@@ -29,8 +29,23 @@ const useProduct = () => {
         return products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
     }, [products, searchTerm]);
 
+    // Organize the products into categories
+    const categorizedProducts = useMemo(() => {
+        if (!filteredProducts) return {};
+
+        return filteredProducts.reduce((acc, product) => {
+            const category = product.category;
+            if (!acc[category]) {
+                acc[category] = [];
+            }
+            acc[category].push(product);
+            return acc;
+        }, {});
+    }, [filteredProducts]);
+
     return {
         products: filteredProducts,
+        categorizedProducts,
         status,
         searchTerm,
         handleAddToCart
