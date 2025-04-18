@@ -22,12 +22,14 @@ const ProductsArray = styled.section`
 const Product = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Align items to the top and bottom */
+    justify-content: space-between; 
     gap: 1rem;
     padding: 1rem;
     border: 1px solid #282c34;
     border-radius: 5px;
     text-align: center;
+    box-sizing: border-box;
+    max-width: 250px;
 
     img {
         width: 100%;
@@ -54,7 +56,7 @@ const Product = styled.div`
 
     @media (hover: hover) and (pointer: fine) {
         &:hover {
-            transform: scale(1.005);
+            background-color:rgba(145, 145, 145, 0.86);
             transition: all 0.1s ease; 
         }
 
@@ -90,14 +92,19 @@ const CategorySection = styled.article`
     }
 
     .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
         gap: 1rem;
+        padding: 1rem 0;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
     }
 
     ${Product} {
-        min-width: 200px;
-        scroll-snap-align: start;
+        flex: 0 0 auto;
+        width: 215px;
     }
 `;
 

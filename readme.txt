@@ -97,6 +97,7 @@ Queda pendiente:
     -corregí las dependencias de desarrollo y las de producción
     -Antes de las pruebas, quiero separar los productos de ProductsList en secciones, si es que el JSON lo permite, como dama, caballero, etc.
         -Para ello vamos a modificar el useProductos, para devolver los productos organizados por categorías
-        -Y un boton de reset de la barra de búsqueda
+            -parace que tengo que reajustar los estilos responsivos
+    -Y un boton de reset de la barra de búsqueda
 
 6 Crear las pruebas automatizadas
