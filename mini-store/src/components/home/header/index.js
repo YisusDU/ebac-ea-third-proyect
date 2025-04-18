@@ -34,7 +34,7 @@ const ProductHeader = () => {
                 <h1><span>Mini Store</span> v3.0</h1>
             </HeaderLogo>
             <HeaderSearch>
-                <input type="text" 
+                <input type="search" 
                 placeholder="Type some item name..." 
                 onChange={handleSearch}
                 />

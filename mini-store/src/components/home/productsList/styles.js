@@ -15,7 +15,6 @@ const ProductsArray = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 1rem;
 `;
 
@@ -82,6 +81,7 @@ const CategorySection = styled.article`
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
     
     h2 {
         font-size: 1.5rem;
@@ -92,19 +92,16 @@ const CategorySection = styled.article`
     }
 
     .products-grid {
-        display: flex;
-        overflow-x: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+        gap: 0.5rem;
         width: 100%;
-        gap: 1rem;
-        padding: 1rem 0;
-        justify-content: space-between;
-        flex-wrap: wrap;
-
+        justify-items: center;
     }
 
     ${Product} {
-        flex: 0 0 auto;
-        width: 215px;
+        width: 100%;
+        max-width: 215px;
     }
 `;
 

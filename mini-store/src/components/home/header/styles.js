@@ -103,7 +103,16 @@ const HeaderSearch = styled.div`
     border-radius: 5px;
     border: none;
     outline: none;
+
+    &::-webkit-search-cancel-button {
+        cursor: pointer;
+        
+        &:hover {
+            opacity: 0.7;
+        }
+    }
   }
+  
   button {
     text-wrap: nowrap;
     padding: 10px 0;
