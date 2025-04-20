@@ -27,7 +27,7 @@ const CheckoutForm = () => {
                         placeholder="Enter street name"
                         required
                         tabIndex={1}
-                        value={"Av. Lisboa"}
+                        value={"Peachtree Road"}
                     />
                     <label htmlFor="streetNumber">Street Number</label>
                     <input
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
                         placeholder="Enter neighborhood"
                         required
                         tabIndex={3}
-                        value={"Bella Vista"}
+                        value={"Buckhead"}
                     />
                     <label htmlFor="postalCode">Postal Code</label>
                     <input

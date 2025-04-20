@@ -80,16 +80,17 @@ const LogTitle = styled.section`
   padding: 20px;
   color: #000;
   box-sizing: border-box;
+  
 
   img{
     width: 100%;
     border-radius: 10px;
     box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.5);
-    margin: 10px 0;
+    margin: 0;
     }
   h1 {
     font-size: 2em;
-    margin-bottom: 10px;
+    margin: 0;
     width: 100%;
     color: #d33636;
   }
@@ -118,6 +119,7 @@ const LogOptions = styled.section`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    height: 100vh;
     min-width: 320px;
     background-color: #fff;
     border-radius: 10px;
@@ -222,7 +224,7 @@ const LoginSignIn = styled.div`
     }
 
     .notAcount {
-        margin: 15px 0;
+        margin: 0;
         color: #333;
         font-size: 1.3em;
         text-align: center;
@@ -304,6 +306,7 @@ const LoginFieldset = styled.fieldset`
         font-weight: bold;
         font-size: 1.5em;
         text-align: center;
+        margin: 0;
     }
 
    form {
@@ -311,7 +314,7 @@ const LoginFieldset = styled.fieldset`
         flex-direction: column;
         gap: 15px;
         width: 100%;
-        padding: 20px 0;
+        padding: 0px;
 
         label {
             font-weight: bold;
@@ -358,6 +361,7 @@ const LoginFieldset = styled.fieldset`
         border: 2px solid #007bff;
         color: white;
         width: 100%;
+        margin: 0;
     }
 
     ${darkModeText}

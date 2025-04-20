@@ -21,7 +21,7 @@ const Login = () => {
   } = useAuth();
 
   return (
-    <>
+    
       <LoginContainer>
         <LogOptions>
           <LoginImg />
@@ -70,7 +70,7 @@ const Login = () => {
           </LoginSignIn>
         </LogOptions>
       </LoginContainer>
-    </>
+    
   );
 };
 
