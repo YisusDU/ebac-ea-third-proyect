@@ -1,4 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const screenMessage = css`
+    font-size: 50px;
+    text-align: center;
+    background-color: rgba(204, 204, 204, 0.8);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 110vh;
+    
+    h2 {
+        color: #000; 
+    }
+`;
 
 const StoreContainer = styled.main`
     margin: 0 auto;
@@ -105,28 +122,28 @@ const CategorySection = styled.article`
     }
 `;
 
+const ProductNotFound = styled.article`
+   ${screenMessage}
+`;
+
 
 
 //Loading and error styles
 const LoadingOrError = styled.article`
-  font-size: 50px;
-  text-align: center;
-  background-color: rgba(204, 204, 204, 0.8);
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
-  position: fixed;
+  ${screenMessage}
   top: 0;
   left: 0;
   z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(5px);
-
-  h2 {
-    color: #000; 
-  }
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
 `;
 
-export { StoreContainer, ProductsArray, Product, LoadingOrError, CategorySection };
+export { 
+    StoreContainer, 
+    ProductsArray, 
+    Product, 
+    LoadingOrError, 
+    CategorySection,
+    ProductNotFound 
+};

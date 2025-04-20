@@ -100,4 +100,8 @@ Queda pendiente:
             -parace que tengo que reajustar los estilos responsivos
     -Y un boton de reset de la barra de búsqueda
 
+    -Ya esta listo el estilo y todo, además añadí un mensaje de articulo no encontrado, pero no se está reenderizando el mensaje de carga o error
+        -Listo, era un error al aplicar los estilos en tipo mixin, pero sí se mostraba el mensaje de carga o error
+        -Creo que aplicaré un poco de estilos al Login para hacer menos alto el componente
+
 6 Crear las pruebas automatizadas

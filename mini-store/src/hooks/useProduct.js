@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { fetchProducts, addProduct } from '../state/products.slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { IDLE } from '../state/status'
+import { FAILED, LOADING, SUCCEEDED, IDLE  } from '../state/status.js';
+
 
 
 const useProduct = () => {
