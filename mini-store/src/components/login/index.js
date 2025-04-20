@@ -52,6 +52,7 @@ const Login = () => {
                   type="text"
                   name="password"
                   placeholder="Password123"
+                  minLength={8}
                   required
                   className={passwordValid === null ? '' : passwordValid ? 'valid' : 'invalid'}
                   onBlur={validateInput}

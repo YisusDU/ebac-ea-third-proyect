@@ -72,6 +72,7 @@ const Registry = () => {
                                 type="text"
                                 name="password"
                                 placeholder="Password123"
+                                minLength={8}
                                 required
                             />
                             <label for="password2"> Confirm your Password:</label>
@@ -80,6 +81,7 @@ const Registry = () => {
                                 type="text"
                                 name="password2"
                                 placeholder="Password123"
+                                minLength={8}
                                 required
                             />
                             <button type="submit">Register</button>
