@@ -48,6 +48,7 @@ const LoginContainer = styled.article`
   width: 100%;
   min-width: 460px;
   height: 100%;
+  min-height: 100vh;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -119,7 +120,6 @@ const LogOptions = styled.section`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    height: 100vh;
     min-width: 320px;
     background-color: #fff;
     border-radius: 10px;
@@ -293,7 +293,6 @@ const LoginSignIn = styled.div`
 const LoginFieldset = styled.fieldset`
     ${flexColumn}
     width: 90%;
-    height: 40%;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
@@ -307,6 +306,8 @@ const LoginFieldset = styled.fieldset`
         font-size: 1.5em;
         text-align: center;
         margin: 0;
+        font-size: clamp(15px, 23px, 22px);
+        text-wrap: nowrap;
     }
 
    form {
