@@ -105,3 +105,7 @@ Queda pendiente:
         -Creo que aplicaré un poco de estilos al Login para hacer menos alto el componente
 
 6 Crear las pruebas automatizadas
+
+    -Al desplegar mi app en Git hub, y verla desde otros dispositivos, noté que es necesario editar los estilos de las paginas de carga y error, pues no funcionan bien en 
+    dispositivos mobiles, he añadido estilos en linea para el html con min.width de 480px
+    
