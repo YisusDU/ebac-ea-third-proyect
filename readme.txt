@@ -108,4 +108,8 @@ Queda pendiente:
 
     -Al desplegar mi app en Git hub, y verla desde otros dispositivos, noté que es necesario editar los estilos de las paginas de carga y error, pues no funcionan bien en 
     dispositivos mobiles, he añadido estilos en linea para el html con min.width de 480px
-    
+
+Es hora de proceder con las pruebas unitarias y de integración
+
+Para comenzar con las pruebas, el primer paso es probar el nuevo slice, justo en setSearchTerm
+

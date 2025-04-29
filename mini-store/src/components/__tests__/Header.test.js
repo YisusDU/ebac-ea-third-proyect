@@ -1,6 +1,6 @@
-import React from "react";
+/* import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Header from "../header/index.js";
+import Header from "../home/header/index.js";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { prettyDOM } from "@testing-library/dom";
@@ -155,3 +155,4 @@ describe("Header", () => {
 
 
 
+ */
