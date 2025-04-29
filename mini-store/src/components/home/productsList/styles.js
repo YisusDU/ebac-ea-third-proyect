@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 
 const screenMessage = css`
-    font-size: 50px;
+    display: block;
+    min-width: 480px;
+    font-size: 40px;
     text-align: center;
     background-color: rgba(204, 204, 204, 0.8);
     box-sizing: border-box;
@@ -10,10 +12,19 @@ const screenMessage = css`
     align-items: center;
     backdrop-filter: blur(5px);
     width: 100%;
-    height: 110vh;
+    height: 150vh;
     
     h2 {
-        color: #000; 
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem;
+        border-radius: 10px;
+        color: #000;
+        text-wrap: wrap;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        box-sizing: border-box;
     }
 `;
 
@@ -134,9 +145,9 @@ const LoadingOrError = styled.article`
   top: 0;
   left: 0;
   z-index: 100;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
+  width: 100%;
+  height: 140vh;
+  position: absolute;
 `;
 
 export { 
