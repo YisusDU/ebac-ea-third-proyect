@@ -112,4 +112,7 @@ Queda pendiente:
 Es hora de proceder con las pruebas unitarias y de integración
 
 Para comenzar con las pruebas, el primer paso es probar el nuevo slice, justo en setSearchTerm
+    -Pruebas de productsSlice completadas
+
+siguiente objetivo: los hooks
 
