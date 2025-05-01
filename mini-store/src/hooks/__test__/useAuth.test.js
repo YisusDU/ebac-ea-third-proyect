@@ -109,30 +109,6 @@ describe("useAuth", () => {
         expect(result.current.passwordValid).toBe(false);
     });
 
-    it("should handle login correctly", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
-
-        const mockEvent = {
-            preventDefault: jest.fn(),
-            target: {
-                elements: {
-                    email: { value: 'test@example.com' },
-                    password: { value: 'password123' }
-                },
-                closest: jest.fn().mockReturnValue({ reset: jest.fn() })
-            }
-        };
-
-        act(() => {
-            result.current.handleValidation(mockEvent);
-        });
-
-        expect(result.current.emailValid).toBe(true);
-        expect(result.current.passwordValid).toBe(true);
-        expect(mockNavigate).toHaveBeenCalledWith("/home");
-    });
-
-
 
     it("should navigate to register", () => {
         const { result } = renderHook(() => useAuth(), { wrapper });
@@ -154,5 +130,115 @@ describe("useAuth", () => {
         expect(mockNavigate).toHaveBeenCalledWith("/home");
     });
 
+    it("should handle no registered user", () => {
+        // Configurar store sin usuario registrado
+        const localStore = configureStore({
+            reducer: {
+                cart: productsReducer
+            },
+            preloadedState: {
+                cart: {
+                    user: null
+                }
+            }
+        });
+
+        // Crear wrapper local con el store modificado
+        const localWrapper = ({ children }) => (
+            <BrowserRouter>
+                <Provider store={localStore}>
+                    {children}
+                </Provider>
+            </BrowserRouter>
+        );
+
+        const { result } = renderHook(() => useAuth(), { wrapper: localWrapper });
+
+        // Simular un elemento de formulario HTML
+        const formElement = document.createElement('form');
+        const emailInput = document.createElement('input');
+        emailInput.name = 'email';
+        emailInput.value = 'test@example.com';
+        const passwordInput = document.createElement('input');
+        passwordInput.name = 'password';
+        passwordInput.value = 'password123';
+        formElement.appendChild(emailInput);
+        formElement.appendChild(passwordInput);
+
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: formElement
+        };
+
+        act(() => {
+            result.current.handleValidation(mockEvent);
+        });
+
+        // Verificar que se muestre la alerta correcta
+        expect(global.alert).toHaveBeenCalledWith('No registered users found. Please register first.');
+        // Verificar que los estados de validación sean falsos
+        expect(result.current.emailValid).toBe(false);
+        expect(result.current.passwordValid).toBe(false);
+    });
+
+    it("should handle successful login", () => {
+        const { result } = renderHook(() => useAuth(), { wrapper});
+
+        // Simular un elemento de formulario HTML
+        const formElement = document.createElement('form');
+        const emailInput = document.createElement('input');
+        emailInput.name = 'email';
+        emailInput.value = 'test@example.com';
+        const passwordInput = document.createElement('input');
+        passwordInput.name = 'password';
+        passwordInput.value = 'password123';
+        formElement.appendChild(emailInput);
+        formElement.appendChild(passwordInput);
+
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: formElement
+        };
+
+        act(() => {
+            result.current.handleValidation(mockEvent);
+        });
+
+        // Verificar que se muestre la alerta correcta
+        expect(global.alert).toHaveBeenCalledWith('Login successful!');
+        // Verificar que los estados de validación sean falsos
+        expect(result.current.emailValid).toBe(true);
+        expect(result.current.passwordValid).toBe(true);
+    });
+
+    it("should handle incorrect login", () => {
+        const { result } = renderHook(() => useAuth(), { wrapper});
+
+        // Simular un elemento de formulario HTML
+        const formElement = document.createElement('form');
+        const emailInput = document.createElement('input');
+        emailInput.name = 'email';
+        emailInput.value = 'test@example.co';
+        const passwordInput = document.createElement('input');
+        passwordInput.name = 'password';
+        passwordInput.value = 'password12';
+        formElement.appendChild(emailInput);
+        formElement.appendChild(passwordInput);
+
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: formElement
+        };
+
+        act(() => {
+            result.current.handleValidation(mockEvent);
+        });
+
+        // Verificar que se muestre la alerta correcta
+        expect(global.alert).toHaveBeenCalledWith('Invalid email or password');
+        // Verificar que los estados de validación sean falsos
+        expect(result.current.emailValid).toBe(false);
+        expect(result.current.passwordValid).toBe(false);
+    });
 
 });
