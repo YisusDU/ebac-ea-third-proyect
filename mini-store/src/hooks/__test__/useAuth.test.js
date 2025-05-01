@@ -18,6 +18,7 @@ jest.mock('react-router-dom', () => ({
 
 describe("useAuth", () => {
     let store;
+    let result;
     const mockNavigate = jest.fn();
 
     beforeEach(() => {
@@ -35,6 +36,7 @@ describe("useAuth", () => {
             }
         });
         useNavigate.mockReturnValue(mockNavigate);
+        result = renderHook(() => useAuth(), { wrapper }).result;
     });
 
     const wrapper = ({ children }) => (
@@ -46,7 +48,6 @@ describe("useAuth", () => {
     );
 
     it(" should validate the email", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
 
         const mockEvent = {
             target: {
@@ -62,7 +63,6 @@ describe("useAuth", () => {
     });
 
     it("should invalidate incorrect email", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
 
         const mockEvent = {
             target: {
@@ -78,7 +78,6 @@ describe("useAuth", () => {
     });
 
     it("should validate the password", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
 
         const mockEvent = {
             target: {
@@ -94,7 +93,6 @@ describe("useAuth", () => {
     });
 
     it("should invalidate incorrect password", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
 
         const mockEvent = {
             target: {
@@ -111,7 +109,6 @@ describe("useAuth", () => {
 
 
     it("should navigate to register", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
 
         act(() => {
             result.current.handleRegister();
@@ -121,7 +118,6 @@ describe("useAuth", () => {
     });
 
     it("should navigate as guest", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper });
 
         act(() => {
             result.current.handleGuest();
@@ -182,7 +178,6 @@ describe("useAuth", () => {
     });
 
     it("should handle successful login", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper});
 
         // Simular un elemento de formulario HTML
         const formElement = document.createElement('form');
@@ -212,7 +207,6 @@ describe("useAuth", () => {
     });
 
     it("should handle incorrect login", () => {
-        const { result } = renderHook(() => useAuth(), { wrapper});
 
         // Simular un elemento de formulario HTML
         const formElement = document.createElement('form');
@@ -237,6 +231,138 @@ describe("useAuth", () => {
         // Verificar que se muestre la alerta correcta
         expect(global.alert).toHaveBeenCalledWith('Invalid email or password');
         // Verificar que los estados de validación sean falsos
+        expect(result.current.emailValid).toBe(false);
+        expect(result.current.passwordValid).toBe(false);
+    });
+
+    it("should not validate input if no registered user", () => {
+        // Configurar store sin usuario registrado
+        const localStore = configureStore({
+            reducer: {
+                cart: productsReducer
+            },
+            preloadedState: {
+                cart: {
+                    user: null
+                }
+            }
+        });
+
+        // Crear wrapper local con el store modificado
+        const localWrapper = ({ children }) => (
+            <BrowserRouter>
+                <Provider store={localStore}>
+                    {children}
+                </Provider>
+            </BrowserRouter>
+        );
+
+        const { result } = renderHook(() => useAuth(), { wrapper: localWrapper });
+
+        const mockEvent = {
+            target: {
+                name: 'email',
+                value: 'test@example.com'
+            }
+        };
+
+        act(() => {
+            result.current.validateInput(mockEvent);
+        });
+
+        // Verificar que emailValid no se actualiza
+        expect(result.current.emailValid).toBe(null);
+    });
+
+    it("should alert if no registered user during validation", () => {
+        // Configurar store sin usuario registrado
+        const localStore = configureStore({
+            reducer: {
+                cart: productsReducer
+            },
+            preloadedState: {
+                cart: {
+                    user: null
+                }
+            }
+        });
+
+        // Crear wrapper local con el store modificado
+        const localWrapper = ({ children }) => (
+            <BrowserRouter>
+                <Provider store={localStore}>
+                    {children}
+                </Provider>
+            </BrowserRouter>
+        );
+
+        const { result } = renderHook(() => useAuth(), { wrapper: localWrapper });
+
+        // Simular un elemento de formulario HTML
+        const formElement = document.createElement('form');
+        const emailInput = document.createElement('input');
+        emailInput.name = 'email';
+        emailInput.value = 'test@example.com';
+        const passwordInput = document.createElement('input');
+        passwordInput.name = 'password';
+        passwordInput.value = 'password123';
+        formElement.appendChild(emailInput);
+        formElement.appendChild(passwordInput);
+
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: formElement
+        };
+
+        act(() => {
+            result.current.handleValidation(mockEvent);
+        });
+
+        // Verificar que se muestre la alerta correcta
+        expect(global.alert).toHaveBeenCalledWith('No registered users found. Please register first.');
+    });
+
+    it("should not validate if email and password fields are empty", () => {
+        const localStore = configureStore({
+            reducer: {
+                cart: productsReducer
+            },
+            preloadedState: {
+                cart: {
+                    user: { email: 'test@example.com', password: 'password123' }
+                }
+            }
+        });
+
+        const localWrapper = ({ children }) => (
+            <BrowserRouter>
+                <Provider store={localStore}>
+                    {children}
+                </Provider>
+            </BrowserRouter>
+        );
+
+        const { result } = renderHook(() => useAuth(), { wrapper: localWrapper });
+
+        const formElement = document.createElement('form');
+        const emailInput = document.createElement('input');
+        emailInput.name = 'email';
+        emailInput.value = '';
+        const passwordInput = document.createElement('input');
+        passwordInput.name = 'password';
+        passwordInput.value = '';
+        formElement.appendChild(emailInput);
+        formElement.appendChild(passwordInput);
+
+        const mockEvent = {
+            preventDefault: jest.fn(),
+            target: formElement
+        };
+
+        act(() => {
+            result.current.handleValidation(mockEvent);
+        });
+
         expect(result.current.emailValid).toBe(false);
         expect(result.current.passwordValid).toBe(false);
     });

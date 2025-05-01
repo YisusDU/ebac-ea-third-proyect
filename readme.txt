@@ -115,4 +115,6 @@ Para comenzar con las pruebas, el primer paso es probar el nuevo slice, justo en
     -Pruebas de productsSlice completadas
 
 siguiente objetivo: los hooks
+    -Me costó bastante trabajo, pero he conseguido terminar las pruebas de useAtuh.js
+    
 
