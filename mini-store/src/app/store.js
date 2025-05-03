@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import productsReducer from "../state/products.slice";
+import thunk from 'redux-thunk'; // Importación correcta de redux-thunk
 
 const persistConfig = {
     key: 'root',
@@ -18,7 +19,7 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false //Necessary for Redux Persist
-        })
+        }).concat(thunk)
 });
 
 export const persistor = persistStore(store);

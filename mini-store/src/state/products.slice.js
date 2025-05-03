@@ -6,7 +6,7 @@ import { FAILED, IDLE, LOADING, SUCCEEDED } from "./status";
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
     try {
-        const response = await axios.get('https://fakestoreapi.com/products+');
+        const response = await axios.get('https://fakestoreapi.com/products');
         return response.data;
     } catch (error) {
         console.error('Error Fetching', error);

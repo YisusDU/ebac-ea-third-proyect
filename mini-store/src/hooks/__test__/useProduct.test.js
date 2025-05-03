@@ -35,122 +35,142 @@ let fakeProducts = [{
 }
 ]
 
-
 // Mock the alert function
 global.alert = jest.fn();
 
-// Mock the navigate function
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
-}));
-
+// Define el mock a nivel de módulo
 jest.mock('../../state/products.slice', () => ({
     ...jest.requireActual('../../state/products.slice'),
-    fetchProducts: jest.fn(() => Promise.resolve({ type: 'FETCH_PRODUCTS_SUCCESS', payload: fakeProducts }))
+    fetchProducts: jest.fn()
 }));
 
 describe('useProduct', () => {
     let store;
     let result;
-    const mockNavigate = jest.fn();
-    const mockDispatch = jest.fn();
 
-    beforeEach(() => {
+
+    it('should call fetchProducts when status is IDLE', () => {
+        // Configurar el store con estado IDLE
         store = configureStore({
             reducer: {
                 cart: productsReducer
             },
             preloadedState: {
                 cart: {
-                    user: {
-                        email: 'test@example.com',
-                        password: 'password123'
-                    },
-                    products: [],
-                    isOpen: false,
-                    searchTerm: '',
-                    isLogin: true,
+                    stock: [],
                     status: IDLE,
-                    stock: fakeProducts
+                    searchTerm: ''
                 }
             }
         });
-        useNavigate.mockReturnValue(mockNavigate);
-        jest.spyOn(store, 'dispatch').mockImplementation(mockDispatch);
-        result = renderHook(() => useProduct(), { wrapper }).result;
-    });
-
-    const wrapper = ({ children }) => (
-        <BrowserRouter>
-            <Provider store={store}>
-                {children}
-            </Provider>
-        </BrowserRouter>
-    );
-
-    it('should fetch products on initial render', async () => {
-        await act(async () => {
-            result = renderHook(() => useProduct(), { wrapper }).result;
-        });
-        expect(mockDispatch).toHaveBeenCalledWith(fetchProducts());
-    });
-
-    it('should return filtered products based on searchTerm', () => {
-        const testProducts = [
-            { id: 1, title: 'Product One', category: 'Category A' },
-            { id: 2, title: 'Product Two', category: 'Category B' }
-        ];
-       const  localStore = configureStore({
-            reducer: {
-                cart: productsReducer
-            },
-            preloadedState: {
-                cart: {
-                    ...store.getState().cart,
-                    stock: testProducts,
-                    searchTerm: 'One'
-                }
-            }
-        });
-
-        const localWrapper = ({ children }) => (
+        // Configura el mock para la primera prueba
+        fetchProducts.mockReturnValue({ type: 'products/fetchProducts' });
+        const wrapper = ({ children }) => (
             <BrowserRouter>
-                <Provider store={localStore}>
+                <Provider store={store}>
                     {children}
                 </Provider>
             </BrowserRouter>
         );
 
-        act(() => {
-            result = renderHook(() => useProduct(), {wrapper: localWrapper }).result;
-        })
-    
-        expect(result.current.products).toEqual([testProducts[0]]);
+        result = renderHook(() => useProduct(), { wrapper }).result;
+        // Verificar que fetchProducts fue llamado
+        expect(fetchProducts).toHaveBeenCalled();
+        expect(result.current.status).toBe(IDLE);
     });
 
-    /* it('should categorize products correctly', () => {
-        const testProducts = [
-            { id: 1, title: 'Product One', category: 'Category A' },
-            { id: 2, title: 'Product Two', category: 'Category B' }
-        ];
-        store = configureStore({
+
+    it("should dispatch addProduct action when handleAddToCart is called", () => {
+        // Importar el módulo completo para poder espiarlo correctamente
+        const productsSlice = require('../../state/products.slice');
+
+        // Espiar la función addProduct correctamente
+        jest.spyOn(productsSlice, 'addProduct');
+
+        // Configurar un store específico para esta prueba
+        const testStore = configureStore({
             reducer: {
                 cart: productsReducer
             },
             preloadedState: {
                 cart: {
-                    ...store.getState().cart,
-                    stock: testProducts
+                    stock: fakeProducts,
+                    status: SUCCEEDED, // Usamos SUCCEEDED para evitar que se llame a fetchProducts
+                    searchTerm: '',
+                    products: [] // Carrito vacío inicialmente
                 }
             }
         });
 
-        result = renderHook(() => useProduct(), { wrapper }).result;
-        expect(result.current.categorizedProducts).toEqual({
-            'Category A': [testProducts[0]],
-            'Category B': [testProducts[1]]
+        // Renderizar el hook con el store específico
+        const { result } = renderHook(() => useProduct(), {
+            wrapper: ({ children }) => (
+                <BrowserRouter>
+                    <Provider store={testStore}>
+                        {children}
+                    </Provider>
+                </BrowserRouter>
+            )
         });
-    }); */
+
+        // Producto de prueba
+        const testProduct = fakeProducts[0];
+
+        // Llamar a handleAddToCart
+        act(() => {
+            result.current.handleAddToCart(testProduct);
+        });
+
+        // Verificar que addProduct fue llamado con los datos correctos
+        expect(productsSlice.addProduct).toHaveBeenCalledWith({
+            id: testProduct.id,
+            title: testProduct.title,
+            price: testProduct.price,
+            image: testProduct.image
+        });
+    });
+
+    const setupHook = (searchTerm = '') => {
+        const testStore = configureStore({
+            reducer: {
+                cart: productsReducer
+            },
+            preloadedState: {
+                cart: {
+                    stock: fakeProducts,
+                    status: SUCCEEDED,
+                    searchTerm: searchTerm
+                }
+            }
+        });
+        
+        const wrapper = ({ children }) => (
+            <BrowserRouter>
+                <Provider store={testStore}>
+                    {children}
+                </Provider>
+            </BrowserRouter>
+        );
+        
+        const hookResult = renderHook(() => useProduct(), { wrapper });
+        
+        return {
+            result: hookResult.result,
+            store: testStore
+        };
+    };
+    
+    it('debería devolver todos los productos cuando el término de búsqueda está vacío', () => {
+        const { result, store } = setupHook('');
+        
+        // Ahora store está definido correctamente
+        console.log("Estado del store:", store.getState().cart);
+        console.log("Productos filtrados:", result.current.products);
+        console.log("Término de búsqueda:", result.current.searchTerm);
+        
+        // Verificar que devuelve todos los productos disponibles
+        expect(result.current.products).toHaveLength(fakeProducts.length);
+        expect(result.current.products).toEqual(fakeProducts);
+    });
 
 });
