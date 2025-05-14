@@ -4,17 +4,17 @@ import { fetchProducts } from '../../state/products.slice';
 import { renderHook, act } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import productsReducer from '../../state/products.slice';
+import productsReducer from "../../state/products.slice.js";
 import { BrowserRouter } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FAILED, LOADING, SUCCEEDED, IDLE } from '../../state/status';
 
 let fakeProducts = [{
-    "id": 1,
-    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    id: 1,
+    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
     "price": 109.95,
-    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    "category": "men's clothing",
+    description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    category: "men's clothing",
     "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     "rating": {
         "rate": 3.9,
@@ -22,31 +22,98 @@ let fakeProducts = [{
     }
 },
 {
-    "id": 2,
-    "title": "Mens Casual Premium Slim Fit T-Shirts ",
-    "price": 22.3,
+    id: 2,
+    title: "Mens Casual Premium Slim Fit T-Shirts ",
+    price: 22.3,
     "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-    "category": "men's clothing",
+    category: "men's clothing",
     "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
     "rating": {
         "rate": 4.1,
         "count": 259
     }
 }
-]
+];
 
 // Mock the alert function
 global.alert = jest.fn();
 
-// Define el mock a nivel de módulo
-jest.mock('../../state/products.slice', () => ({
-    ...jest.requireActual('../../state/products.slice'),
-    fetchProducts: jest.fn()
-}));
 
 describe('useProduct', () => {
     let store;
     let result;
+
+    it("should check the initial state", () => {
+        jest.spyOn(require('../../state/products.slice'), 'fetchProducts').
+            mockReturnValue({ type: 'products/fetchProducts' });
+        // Configurar el store con estado IDLE
+        const setupState = (state) => {
+            store = configureStore({
+                reducer: {
+                    cart: productsReducer
+                },
+                preloadedState: {
+                    cart: {
+                        stock: [],
+                        status: state,
+                        searchTerm: ''
+                    }
+                }
+            });
+
+            const { result } = renderHook(() => useProduct(), {
+                wrapper: ({ children }) => (
+                    <BrowserRouter>
+                        <Provider store={store}>
+                            {children}
+                        </Provider>
+                    </BrowserRouter>
+                )
+            });
+            return result;
+        }
+
+
+        expect(setupState(IDLE).current.status).toBe(IDLE);
+        expect(setupState("").current.status).toBe(IDLE);
+        expect(setupState(LOADING).current.status).not.toBe(IDLE);
+        expect(setupState(LOADING).current.status).toBe(LOADING);
+    });
+
+    it("should check the stock of initial state", () => {
+        /* jest.spyOn(require('../../state/products.slice'), 'fetchProducts').
+            mockReturnValue({ type: 'products/fetchProducts' }); */
+        // Configurar el store con estado IDLE
+        const setupState = (state) => {
+            store = configureStore({
+                reducer: {
+                    cart: productsReducer
+                },
+                preloadedState: {
+                    cart: {
+                        stock: state,
+                        status: SUCCEEDED,
+                        searchTerm: ''
+                    }
+                }
+            });
+
+            const { result } = renderHook(() => useProduct(), {
+                wrapper: ({ children }) => (
+                    <BrowserRouter>
+                        <Provider store={store}>
+                            {children}
+                        </Provider>
+                    </BrowserRouter>
+                )
+            });
+            return result;
+        }
+        console.log(setupState(fakeProducts).current.products);
+        expect(setupState(fakeProducts).current.products).not.toEqual([]);
+        expect(setupState(fakeProducts).current.products).toEqual(fakeProducts);
+        expect(setupState().current.products).toEqual([]);
+    });
 
 
     it('should call fetchProducts when status is IDLE', () => {
@@ -64,7 +131,8 @@ describe('useProduct', () => {
             }
         });
         // Configura el mock para la primera prueba
-        fetchProducts.mockReturnValue({ type: 'products/fetchProducts' });
+        jest.spyOn(require('../../state/products.slice'), 'fetchProducts').
+            mockReturnValue({ type: 'products/fetchProducts' });
         const wrapper = ({ children }) => (
             <BrowserRouter>
                 <Provider store={store}>
@@ -130,47 +198,44 @@ describe('useProduct', () => {
         });
     });
 
-    const setupHook = (searchTerm = '') => {
+
+    it("should categorize products correctly", () => {
+        // Configurar el store con productos
         const testStore = configureStore({
             reducer: {
                 cart: productsReducer
             },
+            middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
             preloadedState: {
                 cart: {
-                    stock: fakeProducts,
+                    stock: [
+                        { id: 1, title: "Camiseta", category: "men's clothing", price: 10, image: "img1.jpg" },
+                        { id: 2, title: "Pantalón", category: "men's clothing", price: 20, image: "img2.jpg" }
+                    ],
                     status: SUCCEEDED,
-                    searchTerm: searchTerm
+                    searchTerm: "",
                 }
             }
         });
-        
-        const wrapper = ({ children }) => (
-            <BrowserRouter>
-                <Provider store={testStore}>
-                    {children}
-                </Provider>
-            </BrowserRouter>
-        );
-        
-        const hookResult = renderHook(() => useProduct(), { wrapper });
-        
-        return {
-            result: hookResult.result,
-            store: testStore
-        };
-    };
-    
-    it('debería devolver todos los productos cuando el término de búsqueda está vacío', () => {
-        const { result, store } = setupHook('');
-        
-        // Ahora store está definido correctamente
-        console.log("Estado del store:", store.getState().cart);
-        console.log("Productos filtrados:", result.current.products);
-        console.log("Término de búsqueda:", result.current.searchTerm);
-        
-        // Verificar que devuelve todos los productos disponibles
-        expect(result.current.products).toHaveLength(fakeProducts.length);
-        expect(result.current.products).toEqual(fakeProducts);
+
+        // Renderizar el hook con el store específico
+        const { result } = renderHook(() => useProduct(), {
+            wrapper: ({ children }) => (
+                <BrowserRouter>
+                    <Provider store={testStore}>
+                        {children}
+                    </Provider>
+                </BrowserRouter>
+            )
+        });
+
+        // Verificar que los productos estén correctamente categorizados
+        expect(Object.keys(result.current.categorizedProducts)).toEqual(["men's clothing"]);
+        expect(result.current.categorizedProducts["men's clothing"]).toHaveLength(2);
+
+        // Verificar que los productos estén en las categorías correctas
+        expect(result.current.categorizedProducts["men's clothing"][0].id).toBe(1);
+        expect(result.current.categorizedProducts["men's clothing"][1].id).toBe(2);
     });
 
 });

@@ -116,5 +116,10 @@ Para comenzar con las pruebas, el primer paso es probar el nuevo slice, justo en
 
 siguiente objetivo: los hooks
     -Me costó bastante trabajo, pero he conseguido terminar las pruebas de useAtuh.js
+
+/////////////////////////
+Despues de dos semanas de vacaciones, he regresado y terminado las pruebas de los hooks, ahora siguen los componentes
+tengo fe que serán más faciles.
+
     
 

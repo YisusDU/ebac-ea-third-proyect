@@ -1,15 +1,25 @@
-/* import React from "react";
+import React from "react";
 import { fireEvent, prettyDOM, render, screen } from "@testing-library/react";
 import Cart from "../home/Cart/index";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "../../state/products.slice";
+import { BrowserRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+
+// Mock the navigate function
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+}));
 
 describe("cart", () => {
     let store;
     let handleRemove;
     let handleToggleCart;
     let isOpen;
+    const mockNavigate = jest.fn();
 
     beforeEach(() => {
         handleRemove = jest.fn();
@@ -32,10 +42,13 @@ describe("cart", () => {
             },
         });
 
+
         render(
-            <Provider store={store}>
-                <Cart handleRemove={handleRemove} handleToggleCart={handleToggleCart} isOpen={isOpen} />
-            </Provider>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <Cart />
+                </Provider>
+            </BrowserRouter>
         );
     });
 
@@ -66,7 +79,7 @@ describe("cart", () => {
                 <Cart />
             </Provider>
         );
-        const emptyCart = screen.getByText("No items in the cart.");
+        const emptyCart = screen.getByText("No items in the cart!.");
         expect(emptyCart).toBeInTheDocument();
         const state = store.getState();
         expect(state.cart.products.length).toBe(0);
@@ -189,4 +202,3 @@ describe("cart", () => {
         });
     });
 });
- */
