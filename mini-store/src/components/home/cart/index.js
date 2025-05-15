@@ -13,7 +13,7 @@ const Cart = () => {
     } = useCart();
    
     return (
-        <CartContainer isOpen={isOpen}>
+        <CartContainer $isOpen={isOpen}>
             <CloseButton role='check-box' onClick={handleCloseClick} aria-label='close-Cart'>X</CloseButton>
             <h2>Your Cart</h2>
             <hr />

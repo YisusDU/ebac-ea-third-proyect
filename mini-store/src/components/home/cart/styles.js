@@ -12,7 +12,7 @@ const CartContainer = styled.aside`
     top: 60px;
     box-shadow: 23px 18px 56px rgb(81 81 81);
     transition: right 0.3s ease-in-out;
-    right: ${({ isOpen }) => isOpen ? '20px' : '-100%'};
+    right: ${({ $isOpen }) => $isOpen ? '20px' : '-100%'};
 
     h2 {
         font-size: 1.5rem;

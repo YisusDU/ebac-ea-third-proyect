@@ -17,7 +17,7 @@ const ProductHeader = () => {
     const toggleLogin = () => {
         navigate('/');
         dispatch(verifyLogin(false));
-    }
+    };
 
     const handleCloseClick = () => {
         dispatch(toggleCart());
@@ -25,7 +25,7 @@ const ProductHeader = () => {
 
     const handleSearch = (e) => {
         dispatch(setSearchTerm(e.target.value));
-    }
+    };
 
     return (
         <HeaderContainer >
@@ -46,7 +46,7 @@ const ProductHeader = () => {
             </HeaderUser>
             <HeaderCart onClick={handleCloseClick}>
                 <SVGCart />
-                <span role="button" aria-label='cart-Count'>{cartItemsCount}</span>
+                <span role="button" aria-label='cart-count'>{cartItemsCount}</span>
             </HeaderCart>
         </HeaderContainer>
     );

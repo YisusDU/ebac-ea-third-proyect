@@ -120,6 +120,12 @@ siguiente objetivo: los hooks
 /////////////////////////
 Despues de dos semanas de vacaciones, he regresado y terminado las pruebas de los hooks, ahora siguen los componentes
 tengo fe que serán más faciles.
+/* Tuve que modificar el jest.config, para que mockee las imports de imágenes dentro de archivos index, lo cual daba errores y agregarle
+una carpeta llamada __mocks__ en la raiz 
 
+Se hacen correcciones en el prop isOpen del Cart hacia sus estilos, con el agregado $ para props custom
+
+Las pruebas del header ya estan completas, pero me da error cuando guardo algun cambio en ese documento
+debo verificarlo.
     
 
