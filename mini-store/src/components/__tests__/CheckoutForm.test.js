@@ -23,7 +23,7 @@ describe("CheckoutForm", () => {
             </BrowserRouter>
         );
         
-    it("renders all input fields", () => {
+    it("should render all form input fields", () => {
         renderComponent();
         expect(screen.getByLabelText(/Street Address/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Street Number/i)).toBeInTheDocument();
@@ -36,12 +36,12 @@ describe("CheckoutForm", () => {
         expect(screen.getByLabelText(/Save Payment Method/i)).toBeInTheDocument();
     });
 
-    it("renders the simulation mode text", () => {
+    it("should render the 'Simulation Mode' text", () => {
         renderComponent();
         expect(screen.getAllByText(/Simulation Mode/i).length).toBeGreaterThan(0);
     });
 
-    it("calls alert and navigates on button click", () => {
+    it("should show alert and navigate when completing purchase", () => {
         window.alert = jest.fn();
         renderComponent();
         const button = screen.getByRole("button", { name: /Complete purchase!/i });
@@ -50,7 +50,7 @@ describe("CheckoutForm", () => {
         expect(mockNavigate).toHaveBeenCalledWith("/postCheckout");
     });
 
-    it("should have default values in the inputs", () => {
+    it("should show default values in all inputs", () => {
         renderComponent();
         expect(screen.getByLabelText(/Street Address/i)).toHaveValue("Peachtree Road");
         expect(screen.getByLabelText(/Street Number/i)).toHaveValue(123);
@@ -62,7 +62,7 @@ describe("CheckoutForm", () => {
         expect(screen.getByLabelText(/Security Code/i)).toHaveValue(126);
     });
 
-    it("checkbox can be checked and unchecked", () => {
+    it("should allow checking and unchecking the checkbox", () => {
         renderComponent();
         const checkbox = screen.getByLabelText(/Save Payment Method/i);
         expect(checkbox).not.toBeChecked();
@@ -72,15 +72,14 @@ describe("CheckoutForm", () => {
         expect(checkbox).not.toBeChecked();
     });
 
-    it("does not submit if button is not clicked", () => {
+    it("should not submit if the button is not clicked", () => {
         window.alert = jest.fn();
         renderComponent();
         expect(window.alert).not.toHaveBeenCalled();
         expect(mockNavigate).not.toHaveBeenCalled();
     });
 
-    // Edge case: try to change a required input (should not change because value is controlled)
-    it("input values are controlled and cannot be changed", () => {
+    it("should keep input values controlled and unchanged", () => {
         renderComponent();
         const streetInput = screen.getByLabelText(/Street Address/i);
         fireEvent.change(streetInput, { target: { value: "New Street" } });
