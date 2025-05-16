@@ -44,6 +44,7 @@ describe("useCart", () => {
         });
         useNavigate.mockReturnValue(mockNavigate);
         result = renderHook(() => useCart(), { wrapper }).result;
+        jest.resetAllMocks(); 
     });
 
     const wrapper = ({ children }) => (

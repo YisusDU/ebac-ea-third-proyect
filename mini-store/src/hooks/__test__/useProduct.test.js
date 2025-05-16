@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from "../../state/products.slice.js";
 import { BrowserRouter } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { FAILED, LOADING, SUCCEEDED, IDLE } from '../../state/status';
 
 let fakeProducts = [{
@@ -43,36 +42,35 @@ describe('useProduct', () => {
     let store;
     let result;
 
+    const setupState = (state) => {
+        store = configureStore({
+            reducer: {
+                cart: productsReducer
+            },
+            preloadedState: {
+                cart: {
+                    stock: [],
+                    status: state,
+                    searchTerm: ''
+                }
+            }
+        });
+
+        const { result } = renderHook(() => useProduct(), {
+            wrapper: ({ children }) => (
+                <BrowserRouter>
+                    <Provider store={store}>
+                        {children}
+                    </Provider>
+                </BrowserRouter>
+            )
+        });
+        return result;
+    };
+
     it("should check the initial state", () => {
         jest.spyOn(require('../../state/products.slice'), 'fetchProducts').
             mockReturnValue({ type: 'products/fetchProducts' });
-        // Configurar el store con estado IDLE
-        const setupState = (state) => {
-            store = configureStore({
-                reducer: {
-                    cart: productsReducer
-                },
-                preloadedState: {
-                    cart: {
-                        stock: [],
-                        status: state,
-                        searchTerm: ''
-                    }
-                }
-            });
-
-            const { result } = renderHook(() => useProduct(), {
-                wrapper: ({ children }) => (
-                    <BrowserRouter>
-                        <Provider store={store}>
-                            {children}
-                        </Provider>
-                    </BrowserRouter>
-                )
-            });
-            return result;
-        }
-
 
         expect(setupState(IDLE).current.status).toBe(IDLE);
         expect(setupState("").current.status).toBe(IDLE);
@@ -109,7 +107,7 @@ describe('useProduct', () => {
             });
             return result;
         }
-        console.log(setupState(fakeProducts).current.products);
+        /* console.log(setupState(fakeProducts).current.products); */
         expect(setupState(fakeProducts).current.products).not.toEqual([]);
         expect(setupState(fakeProducts).current.products).toEqual(fakeProducts);
         expect(setupState().current.products).toEqual([]);

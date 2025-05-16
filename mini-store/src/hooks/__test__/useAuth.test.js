@@ -37,6 +37,7 @@ describe("useAuth", () => {
         });
         useNavigate.mockReturnValue(mockNavigate);
         result = renderHook(() => useAuth(), { wrapper }).result;
+        jest.resetAllMocks();
     });
 
     const wrapper = ({ children }) => (
@@ -105,6 +106,37 @@ describe("useAuth", () => {
             result.current.validateInput(mockEvent);
         });
         expect(result.current.passwordValid).toBe(false);
+    });
+
+    it("should not validate if the user is null", () => {
+        // Configura el store sin usuario registrado
+        const localStore = configureStore({
+            reducer: { cart: productsReducer },
+            preloadedState: { cart: { user: null } }
+        });
+
+        const localWrapper = ({ children }) => (
+            <BrowserRouter>
+                <Provider store={localStore}>{children}</Provider>
+            </BrowserRouter>
+        );
+
+        const { result } = renderHook(() => useAuth(), { wrapper: localWrapper });
+
+        const mockEvent = {
+            target: {
+                name: 'email',
+                value: 'test@example.com'
+            }
+        };
+
+        act(() => {
+            result.current.validateInput(mockEvent);
+        });
+
+        // Como no hay usuario registrado, los estados deben seguir en null
+        expect(result.current.emailValid).toBeNull();
+        expect(result.current.passwordValid).toBeNull();
     });
 
 

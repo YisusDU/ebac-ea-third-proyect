@@ -50,7 +50,7 @@ describe("Header", () => {
     it("renders the header", () => {
         // Variable that renders the header title
         const title = screen.getByText("Mini Store");
-        console.log("title of the header" + prettyDOM(title));
+        /* console.log("title of the header" + prettyDOM(title)); */
 
         // Rendering the header title
         expect(title).toBeInTheDocument();
@@ -68,7 +68,7 @@ describe("Header", () => {
     it("should call the toggleCart function when the cart icon is clicked", () => {
         // Variable that contains the cart icon
         const cartIcon = screen.getByRole("img", { name: "cart-icon" });
-        console.log("Header_cartIcon:" + prettyDOM(cartIcon));
+      /*   console.log("Header_cartIcon:" + prettyDOM(cartIcon)); */
 
         // Click the cart icon
         fireEvent.click(cartIcon.parentElement);
@@ -103,7 +103,7 @@ describe("Header", () => {
             </BrowserRouter>
         );
         let cartCount = screen.getAllByRole("button", { name: "cart-count" });
-        console.log("Quantity of products:" + prettyDOM(cartCount[1]));
+        /* console.log("Quantity of products:" + prettyDOM(cartCount[1])); */
 
         expect(cartCount[1]).toBeInTheDocument();
         expect(cartCount[1]).toHaveTextContent("3");
@@ -132,7 +132,7 @@ describe("Header", () => {
         );
         const state = store.getState();
         let cartCount = screen.getAllByRole("button", { name: "cart-count" });
-        console.log("button cart empty:" + prettyDOM(cartCount[1]));
+        /* console.log("button cart empty:" + prettyDOM(cartCount[1])); */
 
         expect(cartCount[1]).toHaveTextContent("0");
         expect(state.cart.products.length).toBe(0);
@@ -160,7 +160,7 @@ describe("Header", () => {
             </BrowserRouter>
         );
         const cartCount = screen.getAllByRole("button", { name: "cart-count" });
-        console.log("button cart empty:" + prettyDOM(cartCount[1]));
+        /* console.log("button cart empty:" + prettyDOM(cartCount[1])); */
         expect(cartCount[1]).toHaveTextContent("1");
     });
 

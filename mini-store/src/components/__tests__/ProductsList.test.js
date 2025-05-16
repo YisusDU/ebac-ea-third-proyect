@@ -1,4 +1,4 @@
-/* import React from "react";
+import React from "react";
 import { fireEvent, render, screen, within, waitFor } from "@testing-library/react";
 import ProductsList from "../home/ProductsList/index";
 import { Provider } from "react-redux";
@@ -6,31 +6,32 @@ import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from '../../state/products.slice';
 import { LOADING, SUCCEEDED, FAILED, IDLE } from '../../state/status';
 import axios from "axios";
+import { ThemeProvider } from "styled-components";
+import theme from "../../theme/index"
 
 //Mock axios
 jest.mock('axios');
 
 describe("ProductsList", () => {
     let store;
-    let mockProducts;
+    let mockProducts = [
+        {
+            id: 1,
+            title: "Product 1",
+            price: 10,
+            image: "https://via.placeholder.com/150",
+        },
+        {
+            id: 2,
+            title: "Product 2",
+            price: 20,
+            image: "https://via.placeholder.com/150",
+        },
+    ];
 
-    beforeEach(() => {
-        mockProducts = [
-            {
-                id: 1,
-                title: "Product 1",
-                price: 10,
-                image: "https://via.placeholder.com/150",
-            },
-            {
-                id: 2,
-                title: "Product 2",
-                price: 20,
-                image: "https://via.placeholder.com/150",
-            },
-        ];
 
-       store = configureStore({
+    const setupState = (status) => {
+        store = configureStore({
             reducer: {
                 cart: productsReducer,
             },
@@ -39,45 +40,38 @@ describe("ProductsList", () => {
                     products: [],
                     isOpen: false,
                     stock: mockProducts,
-                    status: SUCCEEDED,
-                    error: null
+                    status: status,
+
                 }
             },
         });
-    });
+
+        render(
+            <ThemeProvider theme={theme}>
+                <Provider store={store}>
+                    <ProductsList />
+                </Provider>
+            </ThemeProvider>
+        );
+        const result = store.getState().cart;
+        return result;
+    };
+
 
     it("should render loading state", () => {
-        store = configureStore({
-            reducer: { cart: productsReducer },
-            preloadedState: { cart: { stock: [], status: LOADING } }
-        });
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
-        expect(screen.getByText(/Loading/)).toBeInTheDocument();
+        setupState(LOADING);
+        const loadingTest = screen.getByText(/Loading/)
+        expect(loadingTest).toBeInTheDocument();
     });
 
     it("should render error State", () => {
-        store = configureStore({
-            reducer: { cart: productsReducer },
-            preloadedState: { cart: { stock: [], status: FAILED } }
-        });
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
-        expect(screen.getByText(/There was an error loading the products./)).toBeInTheDocument();
+        setupState(FAILED);
+        const errorTest = screen.getByText(/There was an error loading the products./i);
+        expect(errorTest).toBeInTheDocument();
     });
 
     it("should render products", () => {
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
+        setupState(SUCCEEDED);
         const product1 = screen.getByText(mockProducts[0].title);
         const product2 = screen.getByText(mockProducts[1].title);
 
@@ -86,51 +80,25 @@ describe("ProductsList", () => {
     });
 
     it("should add products to cart when the button is clicked", () => {
-        store = configureStore({
-            reducer: { cart: productsReducer },
-            preloadedState: { 
-                cart: { 
-                    stock: [mockProducts[0]], 
-                    status: SUCCEEDED 
-                } 
-            }
-        });
-        
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
+        setupState(SUCCEEDED);
 
-        const button = screen.getByText("Add to Cart");
-        fireEvent.click(button);
+        const button = screen.getAllByText("Add to Cart");
+        fireEvent.click(button[0]);
 
-        let state = store.getState().cart;
+        const state = store.getState().cart;
         expect(state.products).toHaveLength(1);
     });
 
     it("should add the products to cart when the button is clicked too fast", () => {
-        store = configureStore({
-            reducer: { cart: productsReducer },
-            preloadedState: { 
-                cart: { 
-                    stock: [mockProducts[0]], 
-                    status: SUCCEEDED 
-                } 
-            }
-        });
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
+
+        setupState(SUCCEEDED);
 
         const button = screen.getAllByText("Add to Cart");
-        for(let i = 0; i < 10; i++){
+        for (let i = 0; i < 10; i++) {
             fireEvent.click(button[0]);
         }
 
-        let state = store.getState().cart;
+        const state = store.getState().cart;
         expect(state.products).toHaveLength(1);
         expect(state.products).toHaveLength(1); // Solo debe haber 1 producto
         expect(state.products[0].quantity).toBe(10); // Con cantidad 10
@@ -152,18 +120,20 @@ describe("ProductsList", () => {
 
         store = configureStore({
             reducer: { cart: productsReducer },
-            preloadedState: { 
-                cart: { 
-                    stock: multipleProducts, 
-                    status: SUCCEEDED 
-                } 
+            preloadedState: {
+                cart: {
+                    stock: multipleProducts,
+                    status: SUCCEEDED
+                }
             }
         });
-        
+
         render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
+            <ThemeProvider theme={theme}>
+                <Provider store={store}>
+                    <ProductsList />
+                </Provider>
+            </ThemeProvider>
         );
 
         const buttons = screen.getAllByText("Add to Cart");
@@ -172,8 +142,8 @@ describe("ProductsList", () => {
             fireEvent.click(button);
         });
 
-        let state = store.getState().cart;
-        expect(state.products).toHaveLength(10); // Debería haber 10 productos diferentes
+        const state = store.getState().cart;
+        expect(state.products).toHaveLength(10); 
         expect(state.products).toEqual(
             expect.arrayContaining(
                 multipleProducts.map(product => expect.objectContaining({
@@ -187,11 +157,7 @@ describe("ProductsList", () => {
     });
 
     it("should render products with correct attributes", () => {
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
+        setupState(SUCCEEDED);
 
         const productElements = screen.getAllByTestId("product-item");
         productElements.forEach((productElement, index) => {
@@ -206,7 +172,7 @@ describe("ProductsList", () => {
 
     it("should make a request to the API when the state is IDLE", async () => {
         const fetchProductsMock = jest.spyOn(require('../../state/products.slice'), 'fetchProducts')
-            .mockImplementation(() => () => {});
+            .mockImplementation(() => () => { });
 
         store = configureStore({
             reducer: { cart: productsReducer },
@@ -232,19 +198,10 @@ describe("ProductsList", () => {
                 image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
             }
         ];
-        
+
         axios.get.mockResolvedValue({ data: mockApiProducts });
 
-        store = configureStore({
-            reducer: { cart: productsReducer },
-            preloadedState: { cart: { stock: [], status: IDLE } }
-        });
-
-        render(
-            <Provider store={store}>
-                <ProductsList />
-            </Provider>
-        );
+        setupState(IDLE);
 
         await waitFor(() => {
             expect(axios.get).toHaveBeenCalledWith('https://fakestoreapi.com/products');
@@ -254,5 +211,26 @@ describe("ProductsList", () => {
         expect(state.stock).toEqual(mockApiProducts);
         expect(state.status).toEqual(SUCCEEDED);
     });
+
+    it("should render the ProductNotFound component when there are no products", () => {
+        store = configureStore({
+            reducer: { cart: productsReducer },
+            preloadedState: {
+                cart: {
+                    stock: [],
+                    status: SUCCEEDED
+                }
+            }
+        });
+
+        render(
+            <ThemeProvider theme={theme}>
+                <Provider store={store}>
+                    <ProductsList />
+                </Provider>
+            </ThemeProvider>
+        );
+        const productNotFound = screen.getByText(/No products found with that search term/i);
+        expect(productNotFound).toBeInTheDocument();
+    });
 });
- */

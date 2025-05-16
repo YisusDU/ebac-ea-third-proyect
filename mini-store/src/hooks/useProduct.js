@@ -32,7 +32,6 @@ const useProduct = () => {
 
     // Organize the products into categories
     const categorizedProducts = useMemo(() => {
-        if (!filteredProducts) return {};
 
         return filteredProducts.reduce((acc, product) => {
             const category = product.category;

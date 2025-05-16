@@ -64,7 +64,7 @@ const productsSlice = createSlice({
                 email: action.payload.email,
                 password: action.payload.password,
             };
-            console.log("User added", state.user);
+           /*  console.log("User added", state.user); */
         },
         verifyLogin: (state, action) => {
             state.isLogin = action.payload;
@@ -73,16 +73,16 @@ const productsSlice = createSlice({
     extraReducers: builder => {
         builder
         .addCase(fetchProducts.pending, (state, action) => {
-            console.log("pending:", action);
+           /*  console.log("pending:", action); */
             state.status = LOADING;
         })
         .addCase(fetchProducts.fulfilled, (state, action) => {
-            console.log("fuldilled:", action)
+           /*  console.log("fuldilled:", action) */
             state.stock = action.payload;
             state.status = SUCCEEDED;
         })
         .addCase(fetchProducts.rejected, (state, action) => {
-            console.log("rejected:", action);
+            /* console.log("rejected:", action); */
             state.status = FAILED;
         })
     }

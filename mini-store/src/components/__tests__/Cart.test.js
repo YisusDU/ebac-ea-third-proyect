@@ -19,7 +19,6 @@ describe("cart", () => {
     let handleRemove;
     let handleToggleCart;
     let isOpen;
-    const mockNavigate = jest.fn();
 
     beforeEach(() => {
         handleRemove = jest.fn();
@@ -50,6 +49,7 @@ describe("cart", () => {
                 </Provider>
             </BrowserRouter>
         );
+        jest.resetAllMocks();
     });
 
     it("should render the cart", () => {
@@ -130,7 +130,7 @@ describe("cart", () => {
 
         // Click the cart icon
         fireEvent.click(closeButton);
-        console.log("Clicked close button");
+        /* console.log("Clicked close button"); */
 
         //check if the state has changed
         const state = store.getState();
@@ -154,7 +154,7 @@ describe("cart", () => {
 
         // Verify the state after the click
         state = store.getState(); // Re-fetch the state after the click
-        console.log(`isOpen after click: ${state.cart.isOpen}`);
+        /* console.log(`isOpen after click: ${state.cart.isOpen}`); */
         expect(state.cart.isOpen).toBe(true);
     });
 
@@ -170,7 +170,7 @@ describe("cart", () => {
 
         //Get the styles for parentElement
         const parentStyles = window.getComputedStyle(parentElement);
-        console.log("ParentElement Styles:" + JSON.stringify(parentStyles));
+       /*  console.log("ParentElement Styles:" + JSON.stringify(parentStyles)); */
 
         expect(parentElement).toHaveStyle('right: -100%');
 
@@ -186,7 +186,7 @@ describe("cart", () => {
         );
         //update the components styles
         const updatedParentStyles = window.getComputedStyle(parentElement);
-        console.log("Updated ParentElement Styles:", JSON.stringify(updatedParentStyles));
+        /* console.log("Updated ParentElement Styles:", JSON.stringify(updatedParentStyles)); */
 
         //should change the styles
         expect(parentElement).toHaveStyle('right: 20px');
