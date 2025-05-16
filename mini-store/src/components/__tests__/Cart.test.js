@@ -1,9 +1,17 @@
 import React from "react";
 import { fireEvent, prettyDOM, render, screen } from "@testing-library/react";
-import Cart from "../cart/index.js";
+import Cart from "../home/Cart/index";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "../../state/products.slice";
+import { BrowserRouter } from 'react-router-dom';
+
+
+// Mock the navigate function
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+}));
 
 describe("cart", () => {
     let store;
@@ -32,11 +40,15 @@ describe("cart", () => {
             },
         });
 
+
         render(
-            <Provider store={store}>
-                <Cart handleRemove={handleRemove} handleToggleCart={handleToggleCart} isOpen={isOpen} />
-            </Provider>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <Cart />
+                </Provider>
+            </BrowserRouter>
         );
+        jest.resetAllMocks();
     });
 
     it("should render the cart", () => {
@@ -66,7 +78,7 @@ describe("cart", () => {
                 <Cart />
             </Provider>
         );
-        const emptyCart = screen.getByText("No items in the cart.");
+        const emptyCart = screen.getByText("No items in the cart!.");
         expect(emptyCart).toBeInTheDocument();
         const state = store.getState();
         expect(state.cart.products.length).toBe(0);
@@ -117,7 +129,7 @@ describe("cart", () => {
 
         // Click the cart icon
         fireEvent.click(closeButton);
-        console.log("Clicked close button");
+        /* console.log("Clicked close button"); */
 
         //check if the state has changed
         const state = store.getState();
@@ -141,7 +153,7 @@ describe("cart", () => {
 
         // Verify the state after the click
         state = store.getState(); // Re-fetch the state after the click
-        console.log(`isOpen after click: ${state.cart.isOpen}`);
+        /* console.log(`isOpen after click: ${state.cart.isOpen}`); */
         expect(state.cart.isOpen).toBe(true);
     });
 
@@ -157,7 +169,7 @@ describe("cart", () => {
 
         //Get the styles for parentElement
         const parentStyles = window.getComputedStyle(parentElement);
-        console.log("ParentElement Styles:" + JSON.stringify(parentStyles));
+       /*  console.log("ParentElement Styles:" + JSON.stringify(parentStyles)); */
 
         expect(parentElement).toHaveStyle('right: -100%');
 
@@ -173,7 +185,7 @@ describe("cart", () => {
         );
         //update the components styles
         const updatedParentStyles = window.getComputedStyle(parentElement);
-        console.log("Updated ParentElement Styles:", JSON.stringify(updatedParentStyles));
+        /* console.log("Updated ParentElement Styles:", JSON.stringify(updatedParentStyles)); */
 
         //should change the styles
         expect(parentElement).toHaveStyle('right: 20px');

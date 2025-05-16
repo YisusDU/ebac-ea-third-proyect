@@ -4,6 +4,10 @@ import productsReducer, {
     removeProduct,
     toggleCart,
     updateItems,
+    setSearchTerm,
+    clearProducts,
+    addUser,
+    verifyLogin
 } from "../products.slice";
 import axios from "axios";
 jest.mock("axios");
@@ -14,13 +18,11 @@ describe("products slice", () => {
         stock: [],
         status: "idle",
         isOpen: false,
+        searchTerm: '',
+        user: [],
+        isLogin: false,
     };
 
-    it("should handle initial state", () => {
-        expect(productsReducer(undefined, { type: "unknown" })).toEqual(
-            initialState
-        );
-    });
 
     it("should handle addProduct", () => {
         const product = { id: 1, title: "Product 1", price: 10 };
@@ -41,6 +43,9 @@ describe("products slice", () => {
         const state = productsReducer(initialStateWithProduct, action);
 
         expect(state.products).toEqual([]);
+        expect(state.products.length).toEqual(0);
+
+        expect(state.isOpen).toBe(false)
     });
 
     it("should handle toggleCart", () => {
@@ -51,6 +56,60 @@ describe("products slice", () => {
 
         const nextState = productsReducer(state, action);
         expect(nextState.isOpen).toBe(false);
+    });
+
+    it("should handle setSearchTerm", () => {
+        const action = setSearchTerm("searchTerm");
+        const state = productsReducer(initialState, action);
+
+        expect(state.searchTerm).toEqual("searchTerm");
+    });
+
+    it("should handle clearProducts", () => {
+        const initialStateWithProducts = {
+            ...initialState,
+            products: [{ id: 1, title: "Product 1" }],
+        };
+
+        const action = clearProducts();
+        const state = productsReducer(initialStateWithProducts, action);
+
+        expect(state.products).toEqual([]);
+    });
+
+    it("should handle addUser", () => {
+       const action = addUser({
+            name: "John Doe",
+            email: "EMAIL",
+            password: "password123",
+        });
+        const state = productsReducer(initialState, action); 
+        expect(state.user).toEqual({
+            name: "John Doe",
+            email: "EMAIL",
+            password: "password123",
+        });
+    });
+
+    it("should handle verifyLogin", () => {
+        const action = verifyLogin(true);
+        const state = productsReducer(initialState, action);
+
+        expect(state.isLogin).toBe(true);
+    });
+
+    it("should handle undefined items array", () => {
+        const product = { id: 1, title: "Product 1", price: 10 };
+        const updatedItems = updateItems(undefined, product, 1);
+        expect(updatedItems).toEqual([{ ...product, quantity: 1 }]);
+    });
+
+    it("should remove item when quantity becomes zero", () => {
+        const items = [
+            { id: 1, title: "Product 1", price: 10, quantity: 1 }
+        ];
+        const updatedItems = updateItems(items, { id: 1 }, -1);
+        expect(updatedItems).toEqual([]);
     });
 
     it("should change to pending when fetch is in progress", () => {

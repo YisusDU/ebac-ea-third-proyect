@@ -1,6 +1,8 @@
 import * as React from "react";
 const SVGCheck = (props) => (
   <svg
+    role="img"
+    aria-label="check"
     width="200px"
     height="200px"
     viewBox="0 0 24 24"

@@ -7,9 +7,9 @@ import { FAILED, LOADING, SUCCEEDED, IDLE  } from '../state/status.js';
 
 const useProduct = () => {
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.cart.stock);
-    const status = useSelector((state) => state.cart.status);
-    const searchTerm = useSelector((state) => state.cart.searchTerm);
+    const products = useSelector((state) => state.cart?.stock || []);
+    const status = useSelector((state) => state.cart?.status || IDLE);
+    const searchTerm = useSelector((state) => state.cart?.searchTerm || '');
 
     // We use useEffect to handle asynchronous operations
     useEffect(() => {
@@ -32,7 +32,6 @@ const useProduct = () => {
 
     // Organize the products into categories
     const categorizedProducts = useMemo(() => {
-        if (!filteredProducts) return {};
 
         return filteredProducts.reduce((acc, product) => {
             const category = product.category;

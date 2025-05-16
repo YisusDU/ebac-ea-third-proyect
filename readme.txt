@@ -108,4 +108,30 @@ Queda pendiente:
 
     -Al desplegar mi app en Git hub, y verla desde otros dispositivos, noté que es necesario editar los estilos de las paginas de carga y error, pues no funcionan bien en 
     dispositivos mobiles, he añadido estilos en linea para el html con min.width de 480px
+
+Es hora de proceder con las pruebas unitarias y de integración
+
+Para comenzar con las pruebas, el primer paso es probar el nuevo slice, justo en setSearchTerm
+    -Pruebas de productsSlice completadas
+
+siguiente objetivo: los hooks
+    -Me costó bastante trabajo, pero he conseguido terminar las pruebas de useAtuh.js
+
+/////////////////////////
+Despues de dos semanas de vacaciones, he regresado y terminado las pruebas de los hooks, ahora siguen los componentes
+tengo fe que serán más faciles.
+/* Tuve que modificar el jest.config, para que mockee las imports de imágenes dentro de archivos index, lo cual daba errores y agregarle
+una carpeta llamada __mocks__ en la raiz 
+
+Se hacen correcciones en el prop isOpen del Cart hacia sus estilos, con el agregado $ para props custom
+
+Las pruebas del header ya estan completas, pero me da error cuando guardo algun cambio en ese documento
+debo verificarlo.
+No le he tocado nada, sino que segui adelante con las pruebas de productList, que ya se completaron.
+
+
+/* Con estas pruebas listas, ahora puedo hacer una prueba de integración para home
+
+Ya hice las pruebas de home, de checkout y de Login
     
+

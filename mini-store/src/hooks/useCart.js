@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleCart, removeProduct } from '../state/products.slice';
 import { BuyButton } from '../components/home/Cart/styles';
@@ -53,7 +54,9 @@ const useCart = () => {
         isOpen,
         handleCloseClick, 
         handleRemove,
-        renderBuyButton
+        renderBuyButton,
+        handleCheckout,
+        handleLogin,
     };
 };
 
