@@ -1,6 +1,6 @@
 import React from 'react';
 import useProduct from '../../../hooks/useProduct';
-import { FAILED, LOADING, SUCCEEDED, IDLE  } from '../../../state/status.js';
+import { FAILED, LOADING, SUCCEEDED } from '../../../state/status.js';
 import { 
     StoreContainer, 
     ProductsArray, 
