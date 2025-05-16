@@ -41,7 +41,6 @@ describe("ProductsList", () => {
                     isOpen: false,
                     stock: mockProducts,
                     status: status,
-
                 }
             },
         });

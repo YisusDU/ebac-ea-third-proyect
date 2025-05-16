@@ -127,5 +127,10 @@ Se hacen correcciones en el prop isOpen del Cart hacia sus estilos, con el agreg
 
 Las pruebas del header ya estan completas, pero me da error cuando guardo algun cambio en ese documento
 debo verificarlo.
+No le he tocado nada, sino que segui adelante con las pruebas de productList, que ya se completaron.
+
+
+/* Con estas pruebas listas, ahora puedo hacer una prueba de integración para home
+
     
 
