@@ -1,143 +1,58 @@
-/* import { prettyDOM, render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import userEvent from '@testing-library/user-event';
-import App from '../index';
-import productsReducer from '../../state/products.slice';
-import { SUCCEEDED } from '../../state/status';  // Fix the import
-import React from 'react';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import productsReducer from "../../state/products.slice";
+import App from "../index";
+import { MemoryRouter } from "react-router-dom";
 
-describe('App', () => {
+describe("App", () => {
     let store;
-    let user;
-    let mockProducts;
-
     beforeEach(() => {
-        mockProducts = [
-            {
-                id: 1,
-                title: "Product 1",
-                price: 10,
-                image: "https://via.placeholder.com/150",
-            },
-            {
-                id: 2,
-                title: "Product 2",
-                price: 20,
-                image: "https://via.placeholder.com/150",
-            },
-        ];
-
-        user = userEvent.setup();
         store = configureStore({
-            reducer: {
-                cart: productsReducer
-            },
+            reducer: { cart: productsReducer },
             preloadedState: {
                 cart: {
                     products: [],
-                    isOpen: false,
-                    stock: [mockProducts[0]],
-                    status: SUCCEEDED
+
                 }
             }
         });
+    });
 
-        render(
+    function renderRouter(route) {
+        return render(
             <Provider store={store}>
-                <App />
+                <MemoryRouter initialEntries={route}>
+                    <App />
+                </MemoryRouter>
             </Provider>
         );
+    }
+
+    it("should display Login on the '/' route", () => {
+        renderRouter(['/']);
+        expect(screen.getByText(/login/i)).toBeInTheDocument();
     });
 
-    it("should render main components", () => {
-
-        expect(screen.getByText('Mini-Store -- v 3.0')).toBeInTheDocument();
-        expect(screen.getByRole('main')).toBeInTheDocument();
-        expect(screen.getByText('Your Cart')).toBeInTheDocument();
+    it("should display Registry on the '/register' route", () => {
+        renderRouter(['/register']);
+        expect(screen.getByText(/registry/i)).toBeInTheDocument();
     });
 
-    it("should toggle cart when clicking cart button", async () => {
-
-        // Variable that contains the cart icon
-        const cartIcon = screen.getByRole('img', { name: 'cart-icon' });
-        //console.log("Cart icon found: ", prettyDOM(cartIcon));
-
-        // Click the cart icon
-        await user.click(cartIcon);
-        console.log("Clicked close button");
-
-        //check if the state has changed
-        const state = store.getState();
-        expect(state.cart.isOpen).toBe(true);
-
-        // Click the cart icon again
-        await user.click(cartIcon);
-        const state2 = store.getState();
-        expect(state2.cart.isOpen).toBe(false);
+    it("should display Home on the '/home' route", () => {
+        renderRouter(['/home']);
+        expect(screen.getByPlaceholderText("Type some item name...")).toBeInTheDocument();
     });
 
-    it("should add product to cart", async () => {
-        store = configureStore({
-            reducer: {
-                cart: productsReducer
-            },
-            preloadedState: {
-                cart: {
-                    products: [],
-                    isOpen: false,
-                    stock: [mockProducts[0]],
-                    status: SUCCEEDED,
-                    error: null
-                }
-            }
-        });
-
-        render(
-            <Provider store={store}>
-                <App />
-            </Provider>
-        );
-
-        const button = await screen.getAllByText(/Add to Cart/i);
-        await user.click(button[1]);
-
-        const state = store.getState().cart;
-        expect(state.products).toHaveLength(1);
+    it("should display Checkout on the '/checkout' route", () => {
+        renderRouter(['/checkout']);
+        expect(screen.getByText(/checkout/i)).toBeInTheDocument();
     });
 
-    it("should remove products from the cart", async () => {
-        store = configureStore({
-            reducer: {
-                cart: productsReducer
-            },
-            preloadedState: {
-                cart: {
-                    products: [
-                        {
-                            id: 1,
-                            title: "Product 1",
-                            price: 10,
-                            image: "URL_ADDRESS.placeholder.com/150",
-                            quantity: 2,
-                        }
-                    ],
-                    isOpen: false,
-                    stock: [mockProducts[0]],
-                    status: SUCCEEDED,
-                    error: null
-                }
-            }
-        });
+    it("should display PostCheckout on the '/postcheckout' route", () => {
+        renderRouter(['/postcheckout']);
+        expect(screen.getByText(/You will receive an email confirmation shortly./i)).toBeInTheDocument();
+    });
 
-        render(
-            <Provider store={store}>
-                <App />
-            </Provider>
-        );
-        const buttonRemove = screen.getAllByText(/Remove/i)
-        await user.click(buttonRemove[0]);
-        const state = store.getState().cart;
-        expect(state.products).toHaveLength(1);
-    })
-}) */
+});
