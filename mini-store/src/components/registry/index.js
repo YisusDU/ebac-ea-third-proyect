@@ -19,11 +19,28 @@ const Registry = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const password = formData.get('password');
+        const password2 = formData.get('password2');
+
+        // Validación manual de campos vacíos
+        if (!name || !email || !password || !password2) {
+            alert('All fields are required');
+            return;
+        }
+
+        // Validación de coincidencia de contraseñas
+        if (password !== password2) {
+            alert('Passwords do not match');
+            return;
+        }
+
         try {
             dispatch(addUser({
-                name: formData.get('name'),
-                email: formData.get('email'),
-                password: formData.get('password'),
+                name,
+                email,
+                password,
             }));
 
             alert('User added successfully');
