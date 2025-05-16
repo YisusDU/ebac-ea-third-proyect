@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "../../state/products.slice";
 import { BrowserRouter } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 
 // Mock the navigate function
