@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/ebac-third-proyect">
+        <BrowserRouter basename="/ebac-ea-third-proyect">
           <App />
         </BrowserRouter>
       </PersistGate>
