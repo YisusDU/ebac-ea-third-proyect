@@ -200,3 +200,4 @@ se reenderizan correctamente los componentes y las funciones básicas como añad
 funcionan correctamente
 
 
+He hecho algunos ajustes ya que no se veia el contenido de mi pagina
