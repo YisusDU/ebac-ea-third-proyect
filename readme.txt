@@ -133,5 +133,9 @@ No le he tocado nada, sino que segui adelante con las pruebas de productList, qu
 /* Con estas pruebas listas, ahora puedo hacer una prueba de integración para home
 
 Ya hice las pruebas de home, de checkout y de Login
+
+He terminado las pruebas, he hice el deploy, pero noté que al recargar desde otro sitio que no fuera 
+login, se mostraba un archivo not found
+    Entoces intento crear un html en 404 que redireccione correctamente
     
 

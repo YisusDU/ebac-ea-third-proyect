@@ -2,7 +2,7 @@
   "name": "mini-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://YisusDU.github.io/ebac-third-proyect",
+  "homepage": "https://YisusDU.github.io/ebac-ea-third-proyect",
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
