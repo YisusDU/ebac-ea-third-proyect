@@ -10,7 +10,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
         return response.data;
     } catch (error) {
         console.error('Error Fetching', error);
-        throw error; 
+        throw error;
     }
 });
 
@@ -29,7 +29,7 @@ export const updateItems = (items = [], item, quantityChange) => {
 
 
 const productsSlice = createSlice({
-// Name of the Slice and initial state of the products container and the cart closed
+    // Name of the Slice and initial state of the products container and the cart closed
     name: 'products',
     initialState: {
         products: [],
@@ -52,7 +52,7 @@ const productsSlice = createSlice({
             state.isOpen = !state.isOpen;
         },
         setSearchTerm: (state, action) => {
-            state.searchTerm = action.payload; 
+            state.searchTerm = action.payload;
         },
         clearProducts: (state) => {
             state.products = [];
@@ -64,7 +64,7 @@ const productsSlice = createSlice({
                 email: action.payload.email,
                 password: action.payload.password,
             };
-           /*  console.log("User added", state.user); */
+            /*  console.log("User added", state.user); */
         },
         verifyLogin: (state, action) => {
             state.isLogin = action.payload;
@@ -72,19 +72,19 @@ const productsSlice = createSlice({
     },
     extraReducers: builder => {
         builder
-        .addCase(fetchProducts.pending, (state, action) => {
-           /*  console.log("pending:", action); */
-            state.status = LOADING;
-        })
-        .addCase(fetchProducts.fulfilled, (state, action) => {
-           /*  console.log("fuldilled:", action) */
-            state.stock = action.payload;
-            state.status = SUCCEEDED;
-        })
-        .addCase(fetchProducts.rejected, (state, action) => {
-            /* console.log("rejected:", action); */
-            state.status = FAILED;
-        })
+            .addCase(fetchProducts.pending, (state, action) => {
+                /*  console.log("pending:", action); */
+                state.status = LOADING;
+            })
+            .addCase(fetchProducts.fulfilled, (state, action) => {
+                /*  console.log("fuldilled:", action) */
+                state.stock = action.payload;
+                state.status = SUCCEEDED;
+            })
+            .addCase(fetchProducts.rejected, (state, action) => {
+                /* console.log("rejected:", action); */
+                state.status = FAILED;
+            })
     }
 });
 
@@ -92,5 +92,5 @@ const productsSlice = createSlice({
 
 export const { addProduct, removeProduct, toggleCart, setSearchTerm, clearProducts, addUser, verifyLogin } = productsSlice.actions;
 //We make a destructury:
-const {reducer: productsReducer} = productsSlice;
+const { reducer: productsReducer } = productsSlice;
 export default productsReducer;
