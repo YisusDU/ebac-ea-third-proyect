@@ -9,7 +9,7 @@ import {
     RegistryLogo,
     RegistryOptions
 } from "./styles.js";
-import { addUser } from "../../state/products.slice";
+import { addUser } from "../../state/products.slice.js";
 
 const Registry = () => {
     const dispatch = useDispatch();

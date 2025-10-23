@@ -1,5 +1,5 @@
 import React from 'react';
-import useProduct from '../../../hooks/useProduct';
+import useProduct from '../../../hooks/useProduct.js';
 import { FAILED, LOADING, SUCCEEDED } from '../../../state/status.js';
 import { 
     StoreContainer, 
