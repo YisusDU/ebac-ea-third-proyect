@@ -4,13 +4,13 @@ import { CREATE_USER, FETCH_USER } from "../../constants/actionTypes";
 import { ASYNC_STATUS } from "../../constants/asyncStatus";
 
 // Para list o retrive de usuarios
-const fetchUser = createAsyncThunk(FETCH_USER, async (userId) => {
+export const fetchUser = createAsyncThunk(FETCH_USER, async (userId) => {
   const response = await api.get(`/users/${userId}`);
   return response.data;
 });
 
 // Para Create de usuarios
-const createUser = createAsyncThunk(CREATE_USER, async (user) => {
+export const createUser = createAsyncThunk(CREATE_USER, async (user) => {
   const response = await api.post("/users", {
     email: user.email,
     name: user.name,

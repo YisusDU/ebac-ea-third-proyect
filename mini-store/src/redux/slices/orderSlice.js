@@ -3,7 +3,7 @@ import api from "../../api";
 import { CREATE_ORDER } from "../../constants/actionTypes";
 import { ASYNC_STATUS } from "../../constants/asyncStatus";
 
-const createOrder = createAsyncThunk(CREATE_ORDER, async (order) => {
+export const createOrder = createAsyncThunk(CREATE_ORDER, async (order) => {
   const response = await api.post("/orders", order);
   return response.data;
 });
